@@ -33,5 +33,9 @@ typedef struct prog_options {
     int                 server_port;
 } prog_options_t;
 
+void startup(int *port);
+
+void error(const char *msg);
+
 #endif
 

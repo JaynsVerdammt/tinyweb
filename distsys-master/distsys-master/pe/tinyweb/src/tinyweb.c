@@ -48,6 +48,12 @@ static volatile sig_atomic_t server_running = false;
 
 #define IS_ROOT_DIR(mode)   (S_ISDIR(mode) && ((S_IROTH || S_IXOTH) & (mode)))
 
+void error(const char *msg)
+{
+	perror(msg);
+	exit(1);
+}
+
 //
 // TODO: Include your function header here
 //
@@ -226,6 +232,68 @@ install_signal_handlers(void)
     } /* end if */
 } /* end of install_signal_handlers */
 
+void startup(int *port)
+{
+	int sockfd, newsockfd;
+	socklen_t clilen;
+	char buffer[256];
+	struct sockaddr_in server_addr,cli_addr;
+	int n;
+
+	// TODO: Error handling if not already done for valid or available Port
+
+	sockfd = socket(AF_INET, SOCK_STREAM, 0);
+
+	if(sockfd < 0)
+	{
+		error("Error opening socket");
+	}
+
+	bzero((char *) &server_addr, sizeof(server_addr));
+
+	server_addr.sin_family = AF_INET;
+	server_addr.sin_addr.s_addr = INADDR_ANY;
+	server_addr.sin_port = htons(port);
+
+	if(bind(sockfd, (struct sockaddr *) &server_addr, sizeof(server_addr)) < 0)
+	{
+		error("Error on binding");
+	}
+
+	puts("Listen");
+	listen(sockfd, 5);
+
+	clilen = sizeof(cli_addr);
+	newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
+	puts("Listen");
+
+	if(newsockfd < 0)
+	{
+		error("Listen");
+	}
+
+	bzero(buffer, 256);
+
+	n = read(newsockfd, buffer, 255);
+
+	if(n < 0)
+	{
+		error("Error reading from socket");
+	}
+
+	printf("Here is the message: %s\n", buffer);
+	n = write(newsockfd, "I got zour message", 18);
+
+	if(n < 0)
+	{
+		error("Error writing to socket");
+	}
+
+	close(newsockfd);
+	close(sockfd);
+
+
+}
 
 int
 main(int argc, char *argv[])
@@ -247,11 +315,12 @@ main(int argc, char *argv[])
 
     // do some checks and initialisations...
     open_logfile(&my_opt);
-    check_root_dir(&my_opt);
+    //check_root_dir(&my_opt);
     install_signal_handlers();
     init_logging_semaphore();
 
     // TODO: start the server and handle clients...
+    startup(&my_opt.server_port);
     // here, as an example, show how to interact with the
     // condition set by the signal handler above
     printf("[%d] Starting server '%s'...\n", getpid(), my_opt.progname);
