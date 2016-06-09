@@ -60,13 +60,21 @@ void error(const char *msg)
 static void
 sig_handler(int sig)
 {
+	int status;
+	pid_t pid;
+
     switch(sig) {
         case SIGINT:
             // use our own thread-safe implemention of printf
             safe_printf("\n[%d] Server terminated due to keyboard interrupt\n", getpid());
             server_running = false;
+            exit(0);
             break;
-        // TODO: Complete signal handler
+        case SIGCHLD: // TODO: Reutemann fragen wie aufgerufen und was dahinter steckt
+        	while((pid=wait3(&status, WNOHANG, (struct rusage *)0)) > 0)
+        		printf("Child finished, pid %d.\n", pid);
+        	break;
+
         default:
             break;
     } /* end switch */
@@ -232,72 +240,94 @@ install_signal_handlers(void)
     } /* end if */
 } /* end of install_signal_handlers */
 
-void startup(int *port)
+int server_init(int port)
 {
-	int sockfd, newsockfd;
-	socklen_t clilen;
+		int sockfd;
+		struct sockaddr_in server_addr;
+
+		// TODO: Error handling if not already done for valid or available Port
+
+		sockfd = socket(AF_INET, SOCK_STREAM, 0);
+
+		if(sockfd < 0)
+		{
+			error("Error opening socket");
+		}
+
+		bzero((char *) &server_addr, sizeof(server_addr));
+
+		server_addr.sin_family = AF_INET;
+		server_addr.sin_addr.s_addr = INADDR_ANY;
+		server_addr.sin_port = htons(port);
+
+		if(bind(sockfd, (struct sockaddr *) &server_addr, sizeof(server_addr)) < 0)
+		{
+			error("Error on binding\n");
+		}
+
+		puts("Listen\n");
+		listen(sockfd, 5);
+
+		return sockfd;
+
+}
+
+
+void client_connection(int sockfd)
+{
+	int newsockfd;
 	char buffer[256];
-	struct sockaddr_in server_addr,cli_addr;
-	int n;
+	socklen_t clilen;
+	int read_error;
+	struct sockaddr_in cli_addr;
+	pid_t pid;
 
-	// TODO: Error handling if not already done for valid or available Port
 
-	sockfd = socket(AF_INET, SOCK_STREAM, 0);
-
-	if(sockfd < 0)
-	{
-		error("Error opening socket");
-	}
-
-	bzero((char *) &server_addr, sizeof(server_addr));
-
-	server_addr.sin_family = AF_INET;
-	server_addr.sin_addr.s_addr = INADDR_ANY;
-	server_addr.sin_port = htons(port);
-
-	if(bind(sockfd, (struct sockaddr *) &server_addr, sizeof(server_addr)) < 0)
-	{
-		error("Error on binding");
-	}
-
-	puts("Listen");
-	listen(sockfd, 5);
 
 	clilen = sizeof(cli_addr);
 	newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
-	puts("Listen");
+
+	printf("Process ID: %i\n", getpid());
 
 	if(newsockfd < 0)
 	{
 		error("Listen");
 	}
-
-	bzero(buffer, 256);
-
-	n = read(newsockfd, buffer, 255);
-
-	if(n < 0)
+	switch (pid = fork())
 	{
-		error("Error reading from socket");
+	case -1: error("Error on fork\n");
+		break;
+	case 0: printf("You are in the Childprocess: %d\n", getpid());
+			bzero(buffer, 256);
+
+			read_error = read(newsockfd, buffer, 255);
+
+			if(read_error < 0)
+			{
+				error("Error reading from socket");
+			}
+
+			printf("Here is the message: %s\n", buffer);
+			read_error = write(newsockfd, "I got your message", 18);
+
+			if(read_error < 0)
+			{
+				error("Error writing to socket");
+			}
+			close(newsockfd);
+
+
+		break;
+	default: printf("You are in the Fatherprocess: %d\n", getpid());
+		break;
 	}
-
-	printf("Here is the message: %s\n", buffer);
-	n = write(newsockfd, "I got zour message", 18);
-
-	if(n < 0)
-	{
-		error("Error writing to socket");
-	}
-
-	close(newsockfd);
-	close(sockfd);
-
 
 }
 
 int
 main(int argc, char *argv[])
 {
+	int sockfd;
     int retcode = EXIT_SUCCESS;
     prog_options_t my_opt;
 
@@ -312,21 +342,29 @@ main(int argc, char *argv[])
     // interfere with correct time string parsing
     setenv("TZ", "GMT", 1);
     tzset();
+  /*  printf("Server Port: %d\n", my_opt.server_port);
+    //printf("Server Address: %d\n", my_opt.server_addr);
+    printf("Progname: %s\n", my_opt.progname);
+    printf("Root Dir: %s\n", my_opt.root_dir);
+    printf("Log File: %s\n", my_opt.log_filename); */
 
     // do some checks and initialisations...
     open_logfile(&my_opt);
-    //check_root_dir(&my_opt);
+    check_root_dir(&my_opt);
     install_signal_handlers();
     init_logging_semaphore();
 
     // TODO: start the server and handle clients...
-    startup(&my_opt.server_port);
+
     // here, as an example, show how to interact with the
     // condition set by the signal handler above
     printf("[%d] Starting server '%s'...\n", getpid(), my_opt.progname);
     server_running = true;
+    sockfd = server_init(8080/*my_opt.server_addr*/); //TODO: Reutemann wegen richtiger Portuebergabe fragen
+
     while(server_running) {
-        pause();
+    	client_connection(sockfd);
+        //pause();
     } /* end while */
 
     printf("[%d] Good Bye...\n", getpid());
