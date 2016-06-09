@@ -33,6 +33,9 @@ typedef struct prog_options {
     int                 server_port;
 } prog_options_t;
 
+
+char* parse_HTTP_msg(char buffer[]);
+void child_processing(int newsockfd);
 void client_connection(int sockfd);
 int server_init(int port);
 

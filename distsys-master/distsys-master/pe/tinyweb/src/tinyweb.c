@@ -41,10 +41,13 @@
 #include "safe_print.h"
 #include "sem_print.h"
 
+#include "socket_io.h"
+
 
 // Must be true for the server accepting clients,
 // otherwise, the server will terminate
 static volatile sig_atomic_t server_running = false;
+prog_options_t my_opt;
 
 #define IS_ROOT_DIR(mode)   (S_ISDIR(mode) && ((S_IROTH || S_IXOTH) & (mode)))
 
@@ -252,6 +255,7 @@ int server_init(int port)
 		if(sockfd < 0)
 		{
 			error("Error opening socket");
+			exit(-1);
 		}
 
 		bzero((char *) &server_addr, sizeof(server_addr));
@@ -263,26 +267,22 @@ int server_init(int port)
 		if(bind(sockfd, (struct sockaddr *) &server_addr, sizeof(server_addr)) < 0)
 		{
 			error("Error on binding\n");
+			exit(-1);
 		}
 
 		puts("Listen\n");
 		listen(sockfd, 5);
 
 		return sockfd;
-
 }
 
 
 void client_connection(int sockfd)
 {
 	int newsockfd;
-	char buffer[256];
 	socklen_t clilen;
-	int read_error;
 	struct sockaddr_in cli_addr;
 	pid_t pid;
-
-
 
 	clilen = sizeof(cli_addr);
 	newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
@@ -297,39 +297,91 @@ void client_connection(int sockfd)
 	{
 	case -1: error("Error on fork\n");
 		break;
-	case 0: printf("You are in the Childprocess: %d\n", getpid());
-			bzero(buffer, 256);
-
-			read_error = read(newsockfd, buffer, 255);
-
-			if(read_error < 0)
-			{
-				error("Error reading from socket");
-			}
-
-			printf("Here is the message: %s\n", buffer);
-			read_error = write(newsockfd, "I got your message", 18);
-
-			if(read_error < 0)
-			{
-				error("Error writing to socket");
-			}
-			close(newsockfd);
-
-
+	case 0: child_processing(newsockfd);
 		break;
 	default: printf("You are in the Fatherprocess: %d\n", getpid());
 		break;
 	}
-
 }
+
+void child_processing(int newsockfd)
+{
+	int read_error;
+	int file_to_send;
+	char buffer[256];
+	char *path_to_file;
+
+	printf("You are in the Childprocess: %d\n", getpid());
+	bzero(buffer, 256);
+	read_error = read(newsockfd, buffer, 255);
+	if(read_error < 0)
+	{
+		error("Error reading from socket");
+	}
+	path_to_file = parse_HTTP_msg(buffer);
+	path_to_file = "home/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/index.html";
+	printf("%s", path_to_file);
+	if((file_to_send = open(path_to_file, O_RDONLY, S_IREAD)) < 0)
+		{
+			error("Error opening file");
+		}
+	printf("%i", file_to_send);
+
+	if(write_to_socket(file_to_send, buffer, 256, 3) < 0)
+	{
+		error("Error writing to socket");
+	}
+	printf("Here is the message: %s\n", buffer);
+
+/*	int cc;
+	while((cc)read()> 0)
+	{
+
+	}*/
+
+	if(read_error < 0)
+	{
+		error("Error writing to socket");
+	}
+	close(newsockfd);
+}
+
+char* parse_HTTP_msg(char buffer[])
+{
+	char *p;
+	char str_GET[] = "GET";
+	char str_HEAD[] = "HEAD";
+	char *path_to_file;
+	p = strtok(buffer, " ");
+
+	if(strcmp(p, str_GET) == 0)
+	{
+		p = strtok(NULL, " "); // p contains path to file
+		for(int n=0; n < strlen(p); ++n)
+		{
+			p[n] = p[n+1];	//trim / from path
+		}
+
+		path_to_file = my_opt.root_dir;
+		strcat(path_to_file, p);
+		printf("Filepath: %s\n", path_to_file);
+		return path_to_file;
+	}
+
+	if(strcmp(p, str_HEAD) == 0)
+	{
+		return 0;//TODO
+	}
+	return 0;
+}
+
 
 int
 main(int argc, char *argv[])
 {
 	int sockfd;
     int retcode = EXIT_SUCCESS;
-    prog_options_t my_opt;
+
 
     // read program options
     if (get_options(argc, argv, &my_opt) == 0) {
