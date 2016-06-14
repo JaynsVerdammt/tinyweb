@@ -34,6 +34,7 @@ typedef struct prog_options {
 } prog_options_t;
 
 
+char create_HTTP_response_header(int status, const char *filename);
 char* parse_HTTP_msg(char buffer[]);
 void child_processing(int newsockfd);
 void client_connection(int sockfd);

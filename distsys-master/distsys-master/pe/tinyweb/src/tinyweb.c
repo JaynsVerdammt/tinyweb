@@ -37,6 +37,7 @@
 
 #include "tinyweb.h"
 #include "connect_tcp.h"
+#include "content.h"
 
 #include "safe_print.h"
 #include "sem_print.h"
@@ -311,8 +312,8 @@ void child_processing(int newsockfd)
 	int file_to_send;
 	char buffer[256];
 	char *ptr;
-	ptr = malloc(sizeof(char));
 	char *path_to_file;
+	char response_header;
 
 	printf("You are in the Childprocess: %d\n", getpid());
 	bzero(buffer, 256);
@@ -333,24 +334,71 @@ void child_processing(int newsockfd)
 			error("Error opening file");
 		}
 	printf("File to send: %i\n", file_to_send);
-
+	response_header = create_HTTP_response_header(700, ptr);
+	send(newsockfd, &response_header, strlen(&response_header), 0);
 	if(write_to_socket(file_to_send, buffer, 256, 1) < 0)
 	{
 		error("Error writing to socket");
 	}
+
 	printf("Here is the message: %s\n", buffer);
-
-/*	int cc;
-	while((cc)read()> 0)
-	{
-
-	}*/
 
 	if(read_error < 0)
 	{
 		error("Error writing to socket");
 	}
 	close(newsockfd);
+}
+
+char create_HTTP_response_header(int status, const char *filename)
+{
+	char response_header[4096];
+	char status_text[100] = "HTTP/1.1 %i Partial Content\n";
+	char date_text[100] = "DATUM Funktion einbauen\n";
+	char server_text[100] = "Server: TinyWeb (Build Jun 12 2014)\n";
+	char accept_range_text[100] = "Accept-Ranges: bytes\n";
+	char last_modiefied_text[100] = "Last-Modified: Thu, 12 Jun 2014\n";
+	char content_type_text[100] = "Content-Type: text/html\n";
+	char content_length_text[100] = "Content-Length: 1004\n";
+	char content_range_text[100] = "Content-Range: bytes 6764-7767/7768\n";
+	char connection_text[100] = "Connection: Close\n\n";
+
+	// time calculating
+	time_t t;
+	struct tm *ts;
+
+	t = time(NULL);
+	ts = localtime(&t);
+
+	//file length calculating
+	struct stat buf;
+	if(stat(filename, &buf) != 0)
+	{
+		printf("Error in file length calculating.\n");
+	}
+
+	sprintf(status_text, "HTTP/1.1 %i Partial Content\n", 700 ); //TODO: status dynamisch uebergeben
+	sprintf(date_text, "Date: %s GMT\n", asctime(ts)); //TODO: Reutemann fragen ob das Format so passt
+	//sprintf(server_text, "Server: TinyWeb (Build Jun 12 2014)", ); //TODO: Buildzeit dynamisch einfuegen
+	//sprintf(last_modiefied_text, "Last-Modified: Thu, 12 Jun 2014\n", ); //TODO: Dateidatum einfuegen
+	sprintf(content_type_text, "Content-Type: %s\n",  get_http_content_type_str(get_http_content_type(filename)));
+	sprintf(content_length_text, "Content-Length: %i\n", (int) buf.st_size);
+	//sprintf(content_range_text, "\n", ); //TODO: Frage was das ist und wie dynamisch abgefragt wird
+
+
+
+	strcat(response_header, status_text);
+	strcat(response_header, date_text);
+	strcat(response_header, server_text);
+	strcat(response_header, accept_range_text);
+	strcat(response_header, last_modiefied_text);
+	strcat(response_header, content_type_text);
+	strcat(response_header, content_length_text);
+	strcat(response_header, content_range_text);
+	strcat(response_header, connection_text);
+	printf("%s", response_header);
+
+	return *response_header;
 }
 
 char* parse_HTTP_msg(char buffer[])
