@@ -50,6 +50,7 @@ static volatile sig_atomic_t server_running = false;
 prog_options_t my_opt;
 
 #define IS_ROOT_DIR(mode)   (S_ISDIR(mode) && ((S_IROTH || S_IXOTH) & (mode)))
+#define PATH_MAX 4096
 
 void error(const char *msg)
 {
@@ -309,6 +310,8 @@ void child_processing(int newsockfd)
 	int read_error;
 	int file_to_send;
 	char buffer[256];
+	char *ptr;
+	ptr = malloc(sizeof(char));
 	char *path_to_file;
 
 	printf("You are in the Childprocess: %d\n", getpid());
@@ -319,15 +322,19 @@ void child_processing(int newsockfd)
 		error("Error reading from socket");
 	}
 	path_to_file = parse_HTTP_msg(buffer);
-	path_to_file = "home/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/index.html";
-	printf("%s", path_to_file);
-	if((file_to_send = open(path_to_file, O_RDONLY, S_IREAD)) < 0)
+	//printf("%s", path_to_file);
+	char actualpath [PATH_MAX];
+	//path_to_file = "/home/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/index.html";
+
+	ptr = realpath(path_to_file, actualpath);
+	printf("Realpath to File: %s\n", ptr);
+	if((file_to_send = open(ptr, O_RDWR, S_IWRITE | S_IREAD)) < 0)
 		{
 			error("Error opening file");
 		}
-	printf("%i", file_to_send);
+	printf("File to send: %i\n", file_to_send);
 
-	if(write_to_socket(file_to_send, buffer, 256, 3) < 0)
+	if(write_to_socket(file_to_send, buffer, 256, 1) < 0)
 	{
 		error("Error writing to socket");
 	}
@@ -412,7 +419,10 @@ main(int argc, char *argv[])
     // condition set by the signal handler above
     printf("[%d] Starting server '%s'...\n", getpid(), my_opt.progname);
     server_running = true;
-    sockfd = server_init(8080/*my_opt.server_addr*/); //TODO: Reutemann wegen richtiger Portuebergabe fragen
+ //   prog_options_t *opt = &my_opt;
+   // struct sockaddr_in port = (struct sockaddr_in) opt->server_addr->ai_addr;
+    //int port = htons(addr_port->sin_port);
+    sockfd = server_init(8080);
 
     while(server_running) {
     	client_connection(sockfd);
