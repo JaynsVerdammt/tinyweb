@@ -33,12 +33,14 @@ typedef struct prog_options {
     int                 server_port;
 } prog_options_t;
 
-
+int get_status();
+char* calculate_timestamp();
 char* create_HTTP_response_header(int status, const char *filename);
 char* parse_HTTP_msg(char buffer[]);
-void child_processing(int newsockfd);
+void child_processing(int newsockfd, struct sockaddr_in cli_addr);
 void client_connection(int sockfd);
 int server_init(int port);
+void write_to_logfile(struct sockaddr_in cli_addr, char *path_to_file_relativ, char buffer[], int read_count_bytes);
 
 void error(const char *msg);
 

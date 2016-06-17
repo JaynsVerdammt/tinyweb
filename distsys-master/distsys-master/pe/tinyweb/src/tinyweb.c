@@ -35,7 +35,7 @@
 #include <signal.h>
 #include <getopt.h>
 
-#include "tinyweb.h"
+#include <tinyweb.h>
 #include "connect_tcp.h"
 #include "content.h"
 
@@ -278,6 +278,31 @@ int server_init(int port)
 		return sockfd;
 }
 
+int get_status()
+{
+	// TODO: Status berechnen, setzen
+	return 200;
+}
+
+void write_to_logfile(struct sockaddr_in cli_addr, char *path_to_file_relativ, char buffer[], int read_count_bytes)
+{
+	FILE *f = fopen("logfile.txt", "a");
+	if (f == NULL)
+	{
+	    printf("Error opening file!\n");
+	    exit(1);
+	}
+
+	char *p;
+	struct sockaddr_in* pV4Addr = (struct sockaddr_in*)&cli_addr;
+	struct in_addr ipAddr = pV4Addr->sin_addr;
+	char str[INET_ADDRSTRLEN];
+	inet_ntop( AF_INET, &ipAddr, str, INET_ADDRSTRLEN );
+	p = strtok(buffer, " ");
+	printf("%s - - [%s] \"%s %s\" %i %i\n", str, calculate_timestamp(), p, path_to_file_relativ, get_status(), read_count_bytes);
+	fprintf(f, "%s - - [%s] \"%s %s\" %i %i\n", str, calculate_timestamp(), p, path_to_file_relativ, get_status(), read_count_bytes);
+
+}
 
 void client_connection(int sockfd)
 {
@@ -299,35 +324,39 @@ void client_connection(int sockfd)
 	{
 	case -1: error("Error on fork\n");
 		break;
-	case 0: child_processing(newsockfd);
+	case 0: child_processing(newsockfd, cli_addr);
+
 		break;
 	default: printf("You are in the Fatherprocess: %d\n", getpid());
 		break;
 	}
 }
 
-void child_processing(int newsockfd)
+void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 {
 	int read_error;
-	int file_to_send;
+	int file_to_send = 0;
 	char buffer[BUFFER_SIZE];
+	char *buffer_for_log;
 	char *ptr;
-	char *path_to_file;
+	char *path_to_file_relativ;
 	char *response_header;
 
 	printf("You are in the Childprocess: %d\n", getpid());
 	bzero(buffer, BUFFER_SIZE);
 	read_error = read(newsockfd, buffer, BUFFER_SIZE - 1);
+	buffer_for_log = buffer;
+
 	if(read_error < 0)
 	{
 		error("Error reading from socket");
 	}
-	path_to_file = parse_HTTP_msg(buffer);
-	//printf("%s", path_to_file);
+	path_to_file_relativ = parse_HTTP_msg(buffer);
+	printf("Path to file relativ: %s\n", path_to_file_relativ);
 	char actualpath [PATH_MAX];
 	//path_to_file = "/home/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/index.html";
 
-	ptr = realpath(path_to_file, actualpath);
+	ptr = realpath(path_to_file_relativ, actualpath);
 	printf("Realpath to File: %s\n", ptr);
 	if((file_to_send = open(ptr, O_RDWR, S_IWRITE | S_IREAD)) < 0)
 		{
@@ -339,6 +368,7 @@ void child_processing(int newsockfd)
 	send(newsockfd, response_header, strlen(response_header), 0);
 
 	int read_count_bytes = read(file_to_send, buffer, BUFFER_SIZE);
+	int read_count_bytes_for_log = read_count_bytes;
 	while(read_count_bytes > 0)
 	{
 		if(write_to_socket(newsockfd, buffer, read_count_bytes, 1) < 0)
@@ -346,24 +376,25 @@ void child_processing(int newsockfd)
 				error("Error writing to socket");;
 			}
 		read_count_bytes = read(file_to_send, buffer, BUFFER_SIZE);
+		read_count_bytes_for_log += read_count_bytes;
+
 	}
 	if(read_count_bytes < 0)
 	{
 		error("Error reading from socket");
 	}
 
-
-
-
-
-	printf("Here is the message: %s\n", buffer);
+	//printf("Here is the message: %.*s\n", read_count_bytes, buffer);
 
 	if(read_error < 0)
 	{
 		error("Error writing to socket");
 	}
+	write_to_logfile(cli_addr, path_to_file_relativ, buffer_for_log, read_count_bytes_for_log);
 	close(newsockfd);
 }
+
+
 
 char* create_HTTP_response_header(int status, const char *filename)
 {
@@ -382,13 +413,6 @@ char* create_HTTP_response_header(int status, const char *filename)
 	char content_range_text[100] = "Content-Range: bytes 6764-7767/7768\r\n";
 	char connection_text[100] = "Connection: Close\r\n\r\n";
 
-	// time calculating
-	time_t t;
-	struct tm *ts;
-
-	t = time(NULL);
-	ts = localtime(&t);
-
 	//file length calculating
 	struct stat buf;
 	if(stat(filename, &buf) != 0)
@@ -397,7 +421,7 @@ char* create_HTTP_response_header(int status, const char *filename)
 	}
 
 	sprintf(status_text, "HTTP/1.1 %i Partial Content\r\n", 700 ); //TODO: status dynamisch uebergeben
-	sprintf(date_text, "Date: %s GMT\r\n", asctime(ts)); //TODO: Reutemann fragen ob das Format so passt
+	sprintf(date_text, "Date: %s GMT\r\n", calculate_timestamp()); //TODO: Reutemann fragen ob das Format so passt
 	//sprintf(server_text, "Server: TinyWeb (Build Jun 12 2014)", ); //TODO: Buildzeit dynamisch einfuegen
 	//sprintf(last_modiefied_text, "Last-Modified: Thu, 12 Jun 2014\n", ); //TODO: Dateidatum einfuegen
 	sprintf(content_type_text, "Content-Type: %s\r\n",  get_http_content_type_str(get_http_content_type(filename)));
@@ -418,13 +442,26 @@ char* create_HTTP_response_header(int status, const char *filename)
 	return response_header;
 }
 
+char* calculate_timestamp()
+{
+	time_t t;
+	struct tm *ts;
+
+	t = time(NULL);
+	ts = localtime(&t);
+
+	return asctime(ts);
+}
+
 char* parse_HTTP_msg(char buffer[])
 {
+
 	char *p;
 	char str_GET[] = "GET";
 	char str_HEAD[] = "HEAD";
 	char *path_to_file;
 	p = strtok(buffer, " ");
+	printf("Buffer after strtok: %s\n", p);
 
 	if(strcmp(p, str_GET) == 0)
 	{
@@ -434,9 +471,12 @@ char* parse_HTTP_msg(char buffer[])
 			p[n] = p[n+1];	//trim / from path
 		}
 
+		printf("P in parse_HTTP_msg: %s\n", p);
 		path_to_file = my_opt.root_dir;
+		printf("Filepath relativ in parse_HTTP_msg: %s\n", path_to_file);
+		//printf("Path_to_File in parse_HTTP_msg: %s\n", path_to_file);
 		strcat(path_to_file, p);
-		printf("Filepath: %s\n", path_to_file);
+
 		return path_to_file;
 	}
 
