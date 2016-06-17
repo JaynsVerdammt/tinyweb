@@ -310,14 +310,14 @@ void child_processing(int newsockfd)
 {
 	int read_error;
 	int file_to_send;
-	char buffer[256];
+	char buffer[BUFFER_SIZE];
 	char *ptr;
 	char *path_to_file;
-	char response_header;
+	char *response_header;
 
 	printf("You are in the Childprocess: %d\n", getpid());
-	bzero(buffer, 256);
-	read_error = read(newsockfd, buffer, 255);
+	bzero(buffer, BUFFER_SIZE);
+	read_error = read(newsockfd, buffer, BUFFER_SIZE - 1);
 	if(read_error < 0)
 	{
 		error("Error reading from socket");
@@ -334,12 +334,27 @@ void child_processing(int newsockfd)
 			error("Error opening file");
 		}
 	printf("File to send: %i\n", file_to_send);
+
 	response_header = create_HTTP_response_header(700, ptr);
-	send(newsockfd, &response_header, strlen(&response_header), 0);
-	if(write_to_socket(file_to_send, buffer, 256, 1) < 0)
+	send(newsockfd, response_header, strlen(response_header), 0);
+
+	int read_count_bytes = read(file_to_send, buffer, BUFFER_SIZE);
+	while(read_count_bytes > 0)
 	{
-		error("Error writing to socket");
+		if(write_to_socket(newsockfd, buffer, read_count_bytes, 1) < 0)
+			{
+				error("Error writing to socket");;
+			}
+		read_count_bytes = read(file_to_send, buffer, BUFFER_SIZE);
 	}
+	if(read_count_bytes < 0)
+	{
+		error("Error reading from socket");
+	}
+
+
+
+
 
 	printf("Here is the message: %s\n", buffer);
 
@@ -350,18 +365,22 @@ void child_processing(int newsockfd)
 	close(newsockfd);
 }
 
-char create_HTTP_response_header(int status, const char *filename)
+char* create_HTTP_response_header(int status, const char *filename)
 {
-	char response_header[4096];
-	char status_text[100] = "HTTP/1.1 %i Partial Content\n";
-	char date_text[100] = "DATUM Funktion einbauen\n";
-	char server_text[100] = "Server: TinyWeb (Build Jun 12 2014)\n";
-	char accept_range_text[100] = "Accept-Ranges: bytes\n";
-	char last_modiefied_text[100] = "Last-Modified: Thu, 12 Jun 2014\n";
-	char content_type_text[100] = "Content-Type: text/html\n";
-	char content_length_text[100] = "Content-Length: 1004\n";
-	char content_range_text[100] = "Content-Range: bytes 6764-7767/7768\n";
-	char connection_text[100] = "Connection: Close\n\n";
+	char* response_header = (char*) malloc(BUFFER_SIZE);
+	if(response_header == NULL)
+	{
+		error("Error allocating response_header");
+	}
+	char status_text[100] = "HTTP/1.1 %i Partial Content\r\n";
+	char date_text[100] = "DATUM Funktion einbauen\r\n";
+	char server_text[100] = "Server: TinyWeb (Build Jun 12 2014)\r\n";
+	char accept_range_text[100] = "Accept-Ranges: bytes\r\n";
+	char last_modiefied_text[100] = "Last-Modified: Thu, 12 Jun 2014\r\n";
+	char content_type_text[100] = "Content-Type: text/html\r\n";
+	char content_length_text[100] = "Content-Length: 1004\r\n";
+	char content_range_text[100] = "Content-Range: bytes 6764-7767/7768\r\n";
+	char connection_text[100] = "Connection: Close\r\n\r\n";
 
 	// time calculating
 	time_t t;
@@ -377,15 +396,13 @@ char create_HTTP_response_header(int status, const char *filename)
 		printf("Error in file length calculating.\n");
 	}
 
-	sprintf(status_text, "HTTP/1.1 %i Partial Content\n", 700 ); //TODO: status dynamisch uebergeben
-	sprintf(date_text, "Date: %s GMT\n", asctime(ts)); //TODO: Reutemann fragen ob das Format so passt
+	sprintf(status_text, "HTTP/1.1 %i Partial Content\r\n", 700 ); //TODO: status dynamisch uebergeben
+	sprintf(date_text, "Date: %s GMT\r\n", asctime(ts)); //TODO: Reutemann fragen ob das Format so passt
 	//sprintf(server_text, "Server: TinyWeb (Build Jun 12 2014)", ); //TODO: Buildzeit dynamisch einfuegen
 	//sprintf(last_modiefied_text, "Last-Modified: Thu, 12 Jun 2014\n", ); //TODO: Dateidatum einfuegen
-	sprintf(content_type_text, "Content-Type: %s\n",  get_http_content_type_str(get_http_content_type(filename)));
-	sprintf(content_length_text, "Content-Length: %i\n", (int) buf.st_size);
+	sprintf(content_type_text, "Content-Type: %s\r\n",  get_http_content_type_str(get_http_content_type(filename)));
+	sprintf(content_length_text, "Content-Length: %i\r\n", (int) buf.st_size);
 	//sprintf(content_range_text, "\n", ); //TODO: Frage was das ist und wie dynamisch abgefragt wird
-
-
 
 	strcat(response_header, status_text);
 	strcat(response_header, date_text);
@@ -398,7 +415,7 @@ char create_HTTP_response_header(int status, const char *filename)
 	strcat(response_header, connection_text);
 	printf("%s", response_header);
 
-	return *response_header;
+	return response_header;
 }
 
 char* parse_HTTP_msg(char buffer[])
@@ -467,10 +484,9 @@ main(int argc, char *argv[])
     // condition set by the signal handler above
     printf("[%d] Starting server '%s'...\n", getpid(), my_opt.progname);
     server_running = true;
- //   prog_options_t *opt = &my_opt;
-   // struct sockaddr_in port = (struct sockaddr_in) opt->server_addr->ai_addr;
-    //int port = htons(addr_port->sin_port);
-    sockfd = server_init(8080);
+    prog_options_t *opt = &my_opt;
+    struct sockaddr_in* struct_port = (struct sockaddr_in*) opt->server_addr->ai_addr;
+    sockfd = server_init(ntohs(struct_port->sin_port));
 
     while(server_running) {
     	client_connection(sockfd);
