@@ -15,11 +15,14 @@
 #include <netdb.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <http.h>
 
 #define err_print(s)              fprintf(stderr, "ERROR: %s, %s:%d\n", (s), __FILE__, __LINE__)
 
 #define BUFFER_SIZE                      8192
 #define DEFAULT_HTML_PAGE      "default.html"
+
+http_status_t status;
 
 
 typedef struct prog_options {
@@ -33,9 +36,10 @@ typedef struct prog_options {
     int                 server_port;
 } prog_options_t;
 
-int get_status();
+void set_http_status(http_status_t new_status);
+http_status_t get_http_status(void);
 char* calculate_timestamp();
-char* create_HTTP_response_header(int status, const char *filename);
+char* create_HTTP_response_header(const char *filename);
 char* parse_HTTP_msg(char buffer[]);
 void child_processing(int newsockfd, struct sockaddr_in cli_addr);
 void client_connection(int sockfd);

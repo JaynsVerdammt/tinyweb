@@ -21,7 +21,7 @@ typedef enum http_method {
 
 
 typedef enum http_status {
-    HTTP_STATUS_OK = 0,                    // 200
+    HTTP_STATUS_OK = 0,                    	 // 200
     HTTP_STATUS_PARTIAL_CONTENT,           // 206
     HTTP_STATUS_MOVED_PERMANENTLY,         // 301
     HTTP_STATUS_NOT_MODIFIED,              // 304

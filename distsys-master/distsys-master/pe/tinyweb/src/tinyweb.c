@@ -38,6 +38,8 @@
 #include <tinyweb.h>
 #include "connect_tcp.h"
 #include "content.h"
+#include "http.h"
+
 
 #include "safe_print.h"
 #include "sem_print.h"
@@ -49,9 +51,11 @@
 // otherwise, the server will terminate
 static volatile sig_atomic_t server_running = false;
 prog_options_t my_opt;
+http_status_t status;
 
 #define IS_ROOT_DIR(mode)   (S_ISDIR(mode) && ((S_IROTH || S_IXOTH) & (mode)))
 #define PATH_MAX 4096
+
 
 void error(const char *msg)
 {
@@ -194,6 +198,15 @@ get_options(int argc, char *argv[], prog_options_t *opt)
     return success;
 } /* end of get_options */
 
+void set_http_status(http_status_t new_status)
+{
+	status = new_status;
+}
+
+http_status_t get_http_status(void)
+{
+	return status;
+}
 
 static void
 open_logfile(prog_options_t *opt)
@@ -278,12 +291,6 @@ int server_init(int port)
 		return sockfd;
 }
 
-int get_status()
-{
-	// TODO: Status berechnen, setzen
-	return 200;
-}
-
 void write_to_logfile(struct sockaddr_in cli_addr, char *path_to_file_relativ, char buffer[], int read_count_bytes)
 {
 	FILE *f = fopen("logfile.txt", "a");
@@ -299,8 +306,8 @@ void write_to_logfile(struct sockaddr_in cli_addr, char *path_to_file_relativ, c
 	char str[INET_ADDRSTRLEN];
 	inet_ntop( AF_INET, &ipAddr, str, INET_ADDRSTRLEN );
 	p = strtok(buffer, " ");
-	printf("%s - - [%s] \"%s %s\" %i %i\n", str, calculate_timestamp(), p, path_to_file_relativ, get_status(), read_count_bytes);
-	fprintf(f, "%s - - [%s] \"%s %s\" %i %i\n", str, calculate_timestamp(), p, path_to_file_relativ, get_status(), read_count_bytes);
+	printf("%s - - [%s] \"%s %s\" %i %s %i\n", str, calculate_timestamp(), p, path_to_file_relativ, http_status_list[get_http_status()].code, http_status_list[get_http_status()].text, read_count_bytes);
+	fprintf(f, "%s - - [%s] \"%s %s\" %i %s %i\n", str, calculate_timestamp(), p, path_to_file_relativ, http_status_list[get_http_status()].code, http_status_list[get_http_status()].text, read_count_bytes);
 
 }
 
@@ -311,6 +318,7 @@ void client_connection(int sockfd)
 	struct sockaddr_in cli_addr;
 	pid_t pid;
 
+	printf("Port in Client Connection: %i\n", sockfd);
 	clilen = sizeof(cli_addr);
 	newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
 
@@ -350,6 +358,7 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 	if(read_error < 0)
 	{
 		error("Error reading from socket");
+		set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
 	}
 	path_to_file_relativ = parse_HTTP_msg(buffer);
 	printf("Path to file relativ: %s\n", path_to_file_relativ);
@@ -361,10 +370,11 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 	if((file_to_send = open(ptr, O_RDWR, S_IWRITE | S_IREAD)) < 0)
 		{
 			error("Error opening file");
+			set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
 		}
 	printf("File to send: %i\n", file_to_send);
 
-	response_header = create_HTTP_response_header(700, ptr);
+	response_header = create_HTTP_response_header(ptr);
 	send(newsockfd, response_header, strlen(response_header), 0);
 
 	int read_count_bytes = read(file_to_send, buffer, BUFFER_SIZE);
@@ -373,7 +383,8 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 	{
 		if(write_to_socket(newsockfd, buffer, read_count_bytes, 1) < 0)
 			{
-				error("Error writing to socket");;
+				error("Error writing to socket");
+				set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
 			}
 		read_count_bytes = read(file_to_send, buffer, BUFFER_SIZE);
 		read_count_bytes_for_log += read_count_bytes;
@@ -382,6 +393,7 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 	if(read_count_bytes < 0)
 	{
 		error("Error reading from socket");
+		set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
 	}
 
 	//printf("Here is the message: %.*s\n", read_count_bytes, buffer);
@@ -389,16 +401,17 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 	if(read_error < 0)
 	{
 		error("Error writing to socket");
+		set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
 	}
 	write_to_logfile(cli_addr, path_to_file_relativ, buffer_for_log, read_count_bytes_for_log);
 	close(newsockfd);
 }
 
-
-
-char* create_HTTP_response_header(int status, const char *filename)
+char* create_HTTP_response_header(const char *filename)
 {
+	printf("................\n");
 	char* response_header = (char*) malloc(BUFFER_SIZE);
+
 	if(response_header == NULL)
 	{
 		error("Error allocating response_header");
@@ -420,7 +433,9 @@ char* create_HTTP_response_header(int status, const char *filename)
 		printf("Error in file length calculating.\n");
 	}
 
-	sprintf(status_text, "HTTP/1.1 %i Partial Content\r\n", 700 ); //TODO: status dynamisch uebergeben
+   	set_http_status(HTTP_STATUS_PARTIAL_CONTENT);
+
+	sprintf(status_text, "HTTP/1.1 %i %s\r\n", http_status_list[get_http_status()].code, http_status_list[get_http_status()].text ); //TODO: status dynamisch uebergeben
 	sprintf(date_text, "Date: %s GMT\r\n", calculate_timestamp()); //TODO: Reutemann fragen ob das Format so passt
 	//sprintf(server_text, "Server: TinyWeb (Build Jun 12 2014)", ); //TODO: Buildzeit dynamisch einfuegen
 	//sprintf(last_modiefied_text, "Last-Modified: Thu, 12 Jun 2014\n", ); //TODO: Dateidatum einfuegen
@@ -461,7 +476,9 @@ char* parse_HTTP_msg(char buffer[])
 	char str_HEAD[] = "HEAD";
 	char *path_to_file;
 	p = strtok(buffer, " ");
-	printf("Buffer after strtok: %s\n", p);
+	printf("Buffer after strtok: %s\n", buffer);
+	prog_options_t *opt = &my_opt;
+
 
 	if(strcmp(p, str_GET) == 0)
 	{
@@ -471,18 +488,25 @@ char* parse_HTTP_msg(char buffer[])
 			p[n] = p[n+1];	//trim / from path
 		}
 
-		printf("P in parse_HTTP_msg: %s\n", p);
-		path_to_file = my_opt.root_dir;
-		printf("Filepath relativ in parse_HTTP_msg: %s\n", path_to_file);
+		//strlen von opt->root_dir
+		//ptr = malloc (len + 1)
+		//Fehlerbehandlung von malloc falls ptr ==0
+		//strcpy ptr, root_dir
+		path_to_file = opt->root_dir;
+		printf("Filepath relativ in parse_HTTP_msg: %s\n", opt->root_dir);
 		//printf("Path_to_File in parse_HTTP_msg: %s\n", path_to_file);
 		strcat(path_to_file, p);
-
+		printf("Filepath long relativ in parse_HTTP_msg: %s\n", path_to_file);
 		return path_to_file;
 	}
 
-	if(strcmp(p, str_HEAD) == 0)
+	else if(strcmp(p, str_HEAD) == 0)
 	{
 		return 0;//TODO
+	}
+	else
+	{
+		set_http_status(HTTP_STATUS_NOT_IMPLEMENTED);
 	}
 	return 0;
 }
@@ -528,7 +552,9 @@ main(int argc, char *argv[])
     struct sockaddr_in* struct_port = (struct sockaddr_in*) opt->server_addr->ai_addr;
     sockfd = server_init(ntohs(struct_port->sin_port));
 
+    printf("Port: %i \n", sockfd);
     while(server_running) {
+
     	client_connection(sockfd);
         //pause();
     } /* end while */
