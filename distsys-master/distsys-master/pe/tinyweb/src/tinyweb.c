@@ -354,6 +354,7 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 	bzero(buffer, BUFFER_SIZE);
 	read_error = read(newsockfd, buffer, BUFFER_SIZE - 1);
 	buffer_for_log = buffer;
+	ptr = "";
 
 	if(read_error < 0)
 	{
@@ -363,10 +364,9 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 	path_to_file_relativ = parse_HTTP_msg(buffer);
 	printf("Path to file relativ: %s\n", path_to_file_relativ);
 	char actualpath [PATH_MAX];
-	//path_to_file = "/home/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/index.html";
 
 	ptr = realpath(path_to_file_relativ, actualpath);
-	printf("Realpath to File: %s\n", ptr);
+	printf("Realpath to File: %s\n", actualpath);
 	if((file_to_send = open(ptr, O_RDWR, S_IWRITE | S_IREAD)) < 0)
 		{
 			error("Error opening file");
@@ -374,7 +374,7 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 		}
 	printf("File to send: %i\n", file_to_send);
 
-	response_header = create_HTTP_response_header(ptr);
+	response_header = create_HTTP_response_header(actualpath);
 	send(newsockfd, response_header, strlen(response_header), 0);
 
 	int read_count_bytes = read(file_to_send, buffer, BUFFER_SIZE);
@@ -479,20 +479,21 @@ char* parse_HTTP_msg(char buffer[])
 	printf("Buffer after strtok: %s\n", buffer);
 	prog_options_t *opt = &my_opt;
 
-
 	if(strcmp(p, str_GET) == 0)
 	{
 		p = strtok(NULL, " "); // p contains path to file
-		for(int n=0; n < strlen(p); ++n)
+		/*for(int n=0; n < strlen(p); ++n)
 		{
 			p[n] = p[n+1];	//trim / from path
-		}
+		}*/
 
 		//strlen von opt->root_dir
-		//ptr = malloc (len + 1)
-		//Fehlerbehandlung von malloc falls ptr ==0
+		int lenStr = strlen(opt->root_dir);
+		path_to_file = malloc (lenStr + 1);
+		//Fehlerbehandlung von malloc falls ptr ==0 TODO
 		//strcpy ptr, root_dir
-		path_to_file = opt->root_dir;
+		strcpy(path_to_file, opt->root_dir);
+
 		printf("Filepath relativ in parse_HTTP_msg: %s\n", opt->root_dir);
 		//printf("Path_to_File in parse_HTTP_msg: %s\n", path_to_file);
 		strcat(path_to_file, p);

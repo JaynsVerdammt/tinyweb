@@ -1,0 +1,118 @@
+
+#   Failed test 'Date-Header: not valid 'Fri Jul  8 19:35:05 2016 GMT''
+#   at t/lib/TinyWebTest.pm line 74.
+
+#   Failed test 'Date-Header: not valid 'Fri Jul  8 19:35:05 2016 GMT''
+#   at t/lib/TinyWebTest.pm line 74.
+
+#   Failed test 'Date-Header: missing'
+#   at t/lib/TinyWebTest.pm line 77.
+
+#   Failed test 'Date-Header: missing'
+#   at t/lib/TinyWebTest.pm line 77.
+
+#   Failed test 'Date-Header: missing'
+#   at t/lib/TinyWebTest.pm line 77.
+
+#   Failed test 'Date-Header: missing'
+#   at t/lib/TinyWebTest.pm line 77.
+
+#   Failed test 'Date-Header: missing'
+#   at t/lib/TinyWebTest.pm line 77.
+
+#   Failed test 'Date-Header: missing'
+#   at t/lib/TinyWebTest.pm line 77.
+# Looks like you failed 8 tests of 8.
+t/00date.t ...... 
+Dubious, test returned 8 (wstat 2048, 0x800)
+Failed 8/8 subtests 
+
+#   Failed test 'Server GET /blablabla.html'
+#   at t/00server.t line 72.
+#          got: undef
+#     expected: anything else
+
+#   Failed test 'Server GET /css/xyz.html'
+#   at t/00server.t line 72.
+#          got: undef
+#     expected: anything else
+
+#   Failed test 'Server HEAD /index.html'
+#   at t/00server.t line 72.
+#          got: undef
+#     expected: anything else
+
+#   Failed test 'Server HEAD /css/default.css'
+#   at t/00server.t line 72.
+#          got: undef
+#     expected: anything else
+
+#   Failed test 'Server HEAD /blablabla.html'
+#   at t/00server.t line 72.
+#          got: undef
+#     expected: anything else
+
+#   Failed test 'Server HEAD /css/xyz.html'
+#   at t/00server.t line 72.
+#          got: undef
+#     expected: anything else
+# Looks like you failed 6 tests of 8.
+t/00server.t .... 
+Dubious, test returned 6 (wstat 1536, 0x600)
+Failed 6/8 subtests 
+
+#   Failed test 'Status 200 GET /index.html'
+#   at t/00status.t line 74.
+#                   '206 Partial Content'
+#     doesn't match '(?^:^200)'
+
+#   Failed test 'Status 200 GET /css/default.css'
+#   at t/00status.t line 74.
+#                   '206 Partial Content'
+#     doesn't match '(?^:^200)'
+
+#   Failed test 'Status 404 GET /blablabla.html'
+#   at t/00status.t line 74.
+#                   '500 read timeout'
+#     doesn't match '(?^:^404)'
+
+#   Failed test 'Status 404 GET /css/xyz.html'
+#   at t/00status.t line 74.
+#                   '500 read timeout'
+#     doesn't match '(?^:^404)'
+
+#   Failed test 'Status 200 HEAD /index.html'
+#   at t/00status.t line 74.
+#                   '500 read timeout'
+#     doesn't match '(?^:^200)'
+
+#   Failed test 'Status 200 HEAD /css/default.css'
+#   at t/00status.t line 74.
+#                   '500 read timeout'
+#     doesn't match '(?^:^200)'
+
+#   Failed test 'Status 404 HEAD /blablabla.html'
+#   at t/00status.t line 74.
+#                   '500 read timeout'
+#     doesn't match '(?^:^404)'
+
+#   Failed test 'Status 404 HEAD /css/xyz.html'
+#   at t/00status.t line 74.
+#                   '500 read timeout'
+#     doesn't match '(?^:^404)'
+# Looks like you failed 8 tests of 8.
+t/00status.t .... 
+Dubious, test returned 8 (wstat 2048, 0x800)
+Failed 8/8 subtests 
+
+#   Failed test 'Method GET: Status 200'
+#   at t/01methods.t line 66.
+#          got: '206'
+#     expected: '200'
+
+#   Failed test 'Method HEAD: no response'
+#   at t/01methods.t line 71.
+ERROR: socket() - Connection refused at t/01methods.t line 53.
+# Looks like you planned 9 tests but ran 2.
+# Looks like you failed 2 tests of 2 run.
+# Looks like your test exited with 111 just after 2.

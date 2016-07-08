@@ -1,0 +1,997 @@
+
+#   Failed test 'Date-Header: not valid 'Fri Jul  8 19:53:31 2016 GMT''
+#   at t/lib/TinyWebTest.pm line 74.
+
+#   Failed test 'Date-Header: not valid 'Fri Jul  8 19:53:31 2016 GMT''
+#   at t/lib/TinyWebTest.pm line 74.
+Error opening file: Bad address
+Note: logging is redirected to stdout.
+[7833] Starting server 'tinyweb'...
+Listen
+
+Port: 3 
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Childprocess: 7860
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/index.html
+Path to file relativ: web/index.html
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/index.html
+File to send: 5
+................
+HTTP/1.1 206 Partial Content
+Date: Fri Jul  8 19:53:31 2016
+ GMT
+Server: TinyWeb (Build Jun 12 2014)
+Accept-Ranges: bytes
+Last-Modified: Thu, 12 Jun 2014
+Content-Type: text/html
+Content-Length: 7582
+Content-Range: bytes 6764-7767/7768
+Connection: Close
+
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "GET web/index.html" 206 Partial Content 7582
+Port in Client Connection: 3
+Process ID: 7860
+You are in the Childprocess: 7862
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/blablabla.html
+Path to file relativ: web/blablabla.html
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/blablabla.html
+
+#   Failed test 'Date-Header: missing'
+#   at t/lib/TinyWebTest.pm line 77.
+Error opening file: Bad address
+Note: logging is redirected to stdout.
+[7833] Starting server 'tinyweb'...
+Listen
+
+Port: 3 
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Childprocess: 7886
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/css/xyz.html
+Path to file relativ: web/css/xyz.html
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/css/xyz.html
+
+#   Failed test 'Date-Header: missing'
+#   at t/lib/TinyWebTest.pm line 77.
+Error opening file: Bad address
+Note: logging is redirected to stdout.
+[7833] Starting server 'tinyweb'...
+Listen
+
+Port: 3 
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Childprocess: 7860
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/index.html
+Path to file relativ: web/index.html
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/index.html
+File to send: 5
+................
+HTTP/1.1 206 Partial Content
+Date: Fri Jul  8 19:53:31 2016
+ GMT
+Server: TinyWeb (Build Jun 12 2014)
+Accept-Ranges: bytes
+Last-Modified: Thu, 12 Jun 2014
+Content-Type: text/html
+Content-Length: 7582
+Content-Range: bytes 6764-7767/7768
+Connection: Close
+
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "GET web/index.html" 206 Partial Content 7582
+Port in Client Connection: 3
+Process ID: 7860
+You are in the Fatherprocess: 7860
+Port in Client Connection: 3
+Process ID: 7860
+You are in the Childprocess: 7904
+Buffer after strtok: HEAD
+Path to file relativ: (null)
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/index.html
+
+#   Failed test 'Date-Header: missing'
+#   at t/lib/TinyWebTest.pm line 77.
+Error opening file: Bad address
+Note: logging is redirected to stdout.
+[7833] Starting server 'tinyweb'...
+Listen
+
+Port: 3 
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Childprocess: 7861
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/css/default.css
+Path to file relativ: web/css/default.css
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/css/default.css
+File to send: 6
+................
+HTTP/1.1 206 Partial Content
+Date: Fri Jul  8 19:53:31 2016
+ GMT
+Server: TinyWeb (Build Jun 12 2014)
+Accept-Ranges: bytes
+Last-Modified: Thu, 12 Jun 2014
+Content-Type: text/css
+Content-Length: 880
+Content-Range: bytes 6764-7767/7768
+Connection: Close
+
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "body web/css/default.css" 206 Partial Content 880
+Port in Client Connection: 3
+Process ID: 7861
+You are in the Childprocess: 7915
+Buffer after strtok: HEAD
+Path to file relativ: (null)
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/css/default.css
+
+#   Failed test 'Date-Header: missing'
+#   at t/lib/TinyWebTest.pm line 77.
+Error opening file: Bad address
+Note: logging is redirected to stdout.
+[7833] Starting server 'tinyweb'...
+Listen
+
+Port: 3 
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Childprocess: 7933
+Buffer after strtok: HEAD
+Path to file relativ: (null)
+Realpath to File: 
+
+#   Failed test 'Date-Header: missing'
+#   at t/lib/TinyWebTest.pm line 77.
+Error opening file: Bad address
+Note: logging is redirected to stdout.
+[7833] Starting server 'tinyweb'...
+Listen
+
+Port: 3 
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Childprocess: 7860
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/index.html
+Path to file relativ: web/index.html
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/index.html
+File to send: 5
+................
+HTTP/1.1 206 Partial Content
+Date: Fri Jul  8 19:53:31 2016
+ GMT
+Server: TinyWeb (Build Jun 12 2014)
+Accept-Ranges: bytes
+Last-Modified: Thu, 12 Jun 2014
+Content-Type: text/html
+Content-Length: 7582
+Content-Range: bytes 6764-7767/7768
+Connection: Close
+
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "GET web/index.html" 206 Partial Content 7582
+Port in Client Connection: 3
+Process ID: 7860
+You are in the Fatherprocess: 7860
+Port in Client Connection: 3
+Process ID: 7860
+You are in the Fatherprocess: 7860
+Port in Client Connection: 3
+Process ID: 7860
+You are in the Childprocess: 7935
+Buffer after strtok: HEAD
+Path to file relativ: (null)
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/index.html
+
+#   Failed test 'Date-Header: missing'
+#   at t/lib/TinyWebTest.pm line 77.
+# Looks like you failed 8 tests of 8.
+t/00date.t ...... 
+Dubious, test returned 8 (wstat 2048, 0x800)
+Failed 8/8 subtests 
+Error opening file: Bad address
+Note: logging is redirected to stdout.
+[7833] Starting server 'tinyweb'...
+Listen
+
+Port: 3 
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Childprocess: 7860
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/index.html
+Path to file relativ: web/index.html
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/index.html
+File to send: 5
+................
+HTTP/1.1 206 Partial Content
+Date: Fri Jul  8 19:53:31 2016
+ GMT
+Server: TinyWeb (Build Jun 12 2014)
+Accept-Ranges: bytes
+Last-Modified: Thu, 12 Jun 2014
+Content-Type: text/html
+Content-Length: 7582
+Content-Range: bytes 6764-7767/7768
+Connection: Close
+
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "GET web/index.html" 206 Partial Content 7582
+Port in Client Connection: 3
+Process ID: 7860
+You are in the Fatherprocess: 7860
+Port in Client Connection: 3
+Process ID: 7860
+You are in the Fatherprocess: 7860
+Port in Client Connection: 3
+Process ID: 7860
+You are in the Fatherprocess: 7860
+Port in Client Connection: 3
+Process ID: 7860
+You are in the Childprocess: 7946
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/blablabla.html
+Path to file relativ: web/blablabla.html
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/blablabla.html
+
+#   Failed test 'Server GET /blablabla.html'
+#   at t/00server.t line 72.
+#          got: undef
+#     expected: anything else
+Error opening file: Bad address
+Note: logging is redirected to stdout.
+[7833] Starting server 'tinyweb'...
+Listen
+
+Port: 3 
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Childprocess: 7861
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/css/default.css
+Path to file relativ: web/css/default.css
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/css/default.css
+File to send: 6
+................
+HTTP/1.1 206 Partial Content
+Date: Fri Jul  8 19:53:31 2016
+ GMT
+Server: TinyWeb (Build Jun 12 2014)
+Accept-Ranges: bytes
+Last-Modified: Thu, 12 Jun 2014
+Content-Type: text/css
+Content-Length: 880
+Content-Range: bytes 6764-7767/7768
+Connection: Close
+
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "body web/css/default.css" 206 Partial Content 880
+Port in Client Connection: 3
+Process ID: 7861
+You are in the Fatherprocess: 7861
+Port in Client Connection: 3
+Process ID: 7861
+You are in the Fatherprocess: 7861
+Port in Client Connection: 3
+Process ID: 7861
+You are in the Childprocess: 7952
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/css/xyz.html
+Path to file relativ: web/css/xyz.html
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/css/xyz.html
+
+#   Failed test 'Server GET /css/xyz.html'
+#   at t/00server.t line 72.
+#          got: undef
+#     expected: anything else
+Error opening file: Bad address
+Note: logging is redirected to stdout.
+[7833] Starting server 'tinyweb'...
+Listen
+
+Port: 3 
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Childprocess: 7861
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/css/default.css
+Path to file relativ: web/css/default.css
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/css/default.css
+File to send: 6
+................
+HTTP/1.1 206 Partial Content
+Date: Fri Jul  8 19:53:31 2016
+ GMT
+Server: TinyWeb (Build Jun 12 2014)
+Accept-Ranges: bytes
+Last-Modified: Thu, 12 Jun 2014
+Content-Type: text/css
+Content-Length: 880
+Content-Range: bytes 6764-7767/7768
+Connection: Close
+
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "body web/css/default.css" 206 Partial Content 880
+Port in Client Connection: 3
+Process ID: 7861
+You are in the Fatherprocess: 7861
+Port in Client Connection: 3
+Process ID: 7861
+You are in the Childprocess: 7944
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/index.html
+Path to file relativ: web/index.html
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/index.html
+File to send: 9
+................
+HTTP/1.1 206 Partial Content
+Date: Fri Jul  8 19:56:32 2016
+ GMT
+Server: TinyWeb (Build Jun 12 2014)
+Accept-Ranges: bytes
+Last-Modified: Thu, 12 Jun 2014
+Content-Type: text/html
+Content-Length: 7582
+Content-Range: bytes 6764-7767/7768
+Connection: Close
+
+127.0.0.1 - - [Fri Jul  8 19:56:32 2016
+] "GET web/index.html" 206 Partial Content 7582
+Port in Client Connection: 3
+Process ID: 7944
+You are in the Childprocess: 7969
+Buffer after strtok: HEAD
+Path to file relativ: (null)
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/index.html
+
+#   Failed test 'Server HEAD /index.html'
+#   at t/00server.t line 72.
+#          got: undef
+#     expected: anything else
+Error opening file: Bad address
+Note: logging is redirected to stdout.
+[7833] Starting server 'tinyweb'...
+Listen
+
+Port: 3 
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Childprocess: 7982
+Buffer after strtok: HEAD
+Path to file relativ: (null)
+Realpath to File: 
+
+#   Failed test 'Server HEAD /css/default.css'
+#   at t/00server.t line 72.
+#          got: undef
+#     expected: anything else
+Error opening file: Bad address
+Note: logging is redirected to stdout.
+[7833] Starting server 'tinyweb'...
+Listen
+
+Port: 3 
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Childprocess: 7860
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/index.html
+Path to file relativ: web/index.html
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/index.html
+File to send: 5
+................
+HTTP/1.1 206 Partial Content
+Date: Fri Jul  8 19:53:31 2016
+ GMT
+Server: TinyWeb (Build Jun 12 2014)
+Accept-Ranges: bytes
+Last-Modified: Thu, 12 Jun 2014
+Content-Type: text/html
+Content-Length: 7582
+Content-Range: bytes 6764-7767/7768
+Connection: Close
+
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "GET web/index.html" 206 Partial Content 7582
+Port in Client Connection: 3
+Process ID: 7860
+You are in the Fatherprocess: 7860
+Port in Client Connection: 3
+Process ID: 7860
+You are in the Fatherprocess: 7860
+Port in Client Connection: 3
+Process ID: 7860
+You are in the Fatherprocess: 7860
+Port in Client Connection: 3
+Process ID: 7860
+You are in the Fatherprocess: 7860
+Port in Client Connection: 3
+Process ID: 7860
+You are in the Childprocess: 7988
+Buffer after strtok: HEAD
+Path to file relativ: (null)
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/index.html
+
+#   Failed test 'Server HEAD /blablabla.html'
+#   at t/00server.t line 72.
+#          got: undef
+#     expected: anything else
+Error opening file: Bad address
+Note: logging is redirected to stdout.
+[7833] Starting server 'tinyweb'...
+Listen
+
+Port: 3 
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Childprocess: 7945
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/css/default.css
+Path to file relativ: web/css/default.css
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/css/default.css
+File to send: 9
+................
+HTTP/1.1 206 Partial Content
+Date: Fri Jul  8 19:56:32 2016
+ GMT
+Server: TinyWeb (Build Jun 12 2014)
+Accept-Ranges: bytes
+Last-Modified: Thu, 12 Jun 2014
+Content-Type: text/css
+Content-Length: 880
+Content-Range: bytes 6764-7767/7768
+Connection: Close
+
+127.0.0.1 - - [Fri Jul  8 19:56:32 2016
+] "body web/css/default.css" 206 Partial Content 880
+Port in Client Connection: 3
+Process ID: 7945
+You are in the Childprocess: 7999
+Buffer after strtok: HEAD
+Path to file relativ: (null)
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/css/default.css
+
+#   Failed test 'Server HEAD /css/xyz.html'
+#   at t/00server.t line 72.
+#          got: undef
+#     expected: anything else
+# Looks like you failed 6 tests of 8.
+t/00server.t .... 
+Dubious, test returned 6 (wstat 1536, 0x600)
+Failed 6/8 subtests 
+
+#   Failed test 'Status 200 GET /index.html'
+#   at t/00status.t line 74.
+#                   '206 Partial Content'
+#     doesn't match '(?^:^200)'
+
+#   Failed test 'Status 200 GET /css/default.css'
+#   at t/00status.t line 74.
+#                   '206 Partial Content'
+#     doesn't match '(?^:^200)'
+Error opening file: Bad address
+Note: logging is redirected to stdout.
+[7833] Starting server 'tinyweb'...
+Listen
+
+Port: 3 
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Childprocess: 8010
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/blablabla.html
+Path to file relativ: web/blablabla.html
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/blablabla.html
+
+#   Failed test 'Status 404 GET /blablabla.html'
+#   at t/00status.t line 74.
+#                   '500 read timeout'
+#     doesn't match '(?^:^404)'
+Error opening file: Bad address
+Note: logging is redirected to stdout.
+[7833] Starting server 'tinyweb'...
+Listen
+
+Port: 3 
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Childprocess: 7860
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/index.html
+Path to file relativ: web/index.html
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/index.html
+File to send: 5
+................
+HTTP/1.1 206 Partial Content
+Date: Fri Jul  8 19:53:31 2016
+ GMT
+Server: TinyWeb (Build Jun 12 2014)
+Accept-Ranges: bytes
+Last-Modified: Thu, 12 Jun 2014
+Content-Type: text/html
+Content-Length: 7582
+Content-Range: bytes 6764-7767/7768
+Connection: Close
+
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "GET web/index.html" 206 Partial Content 7582
+Port in Client Connection: 3
+Process ID: 7860
+You are in the Fatherprocess: 7860
+Port in Client Connection: 3
+Process ID: 7860
+You are in the Fatherprocess: 7860
+Port in Client Connection: 3
+Process ID: 7860
+You are in the Fatherprocess: 7860
+Port in Client Connection: 3
+Process ID: 7860
+You are in the Fatherprocess: 7860
+Port in Client Connection: 3
+Process ID: 7860
+You are in the Fatherprocess: 7860
+Port in Client Connection: 3
+Process ID: 7860
+You are in the Childprocess: 8016
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/css/xyz.html
+Path to file relativ: web/css/xyz.html
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/css/xyz.html
+
+#   Failed test 'Status 404 GET /css/xyz.html'
+#   at t/00status.t line 74.
+#                   '500 read timeout'
+#     doesn't match '(?^:^404)'
+Error opening file: Bad address
+Note: logging is redirected to stdout.
+[7833] Starting server 'tinyweb'...
+Listen
+
+Port: 3 
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Childprocess: 7945
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/css/default.css
+Path to file relativ: web/css/default.css
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/css/default.css
+File to send: 9
+................
+HTTP/1.1 206 Partial Content
+Date: Fri Jul  8 19:56:32 2016
+ GMT
+Server: TinyWeb (Build Jun 12 2014)
+Accept-Ranges: bytes
+Last-Modified: Thu, 12 Jun 2014
+Content-Type: text/css
+Content-Length: 880
+Content-Range: bytes 6764-7767/7768
+Connection: Close
+
+127.0.0.1 - - [Fri Jul  8 19:56:32 2016
+] "body web/css/default.css" 206 Partial Content 880
+Port in Client Connection: 3
+Process ID: 7945
+You are in the Fatherprocess: 7945
+Port in Client Connection: 3
+Process ID: 7945
+You are in the Childprocess: 8019
+Buffer after strtok: HEAD
+Path to file relativ: (null)
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/css/default.css
+
+#   Failed test 'Status 200 HEAD /index.html'
+#   at t/00status.t line 74.
+#                   '500 read timeout'
+#     doesn't match '(?^:^200)'
+Error opening file: Bad address
+Note: logging is redirected to stdout.
+[7833] Starting server 'tinyweb'...
+Listen
+
+Port: 3 
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Childprocess: 7861
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/css/default.css
+Path to file relativ: web/css/default.css
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/css/default.css
+File to send: 6
+................
+HTTP/1.1 206 Partial Content
+Date: Fri Jul  8 19:53:31 2016
+ GMT
+Server: TinyWeb (Build Jun 12 2014)
+Accept-Ranges: bytes
+Last-Modified: Thu, 12 Jun 2014
+Content-Type: text/css
+Content-Length: 880
+Content-Range: bytes 6764-7767/7768
+Connection: Close
+
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "body web/css/default.css" 206 Partial Content 880
+Port in Client Connection: 3
+Process ID: 7861
+You are in the Fatherprocess: 7861
+Port in Client Connection: 3
+Process ID: 7861
+You are in the Fatherprocess: 7861
+Port in Client Connection: 3
+Process ID: 7861
+You are in the Fatherprocess: 7861
+Port in Client Connection: 3
+Process ID: 7861
+You are in the Fatherprocess: 7861
+Port in Client Connection: 3
+Process ID: 7861
+You are in the Childprocess: 8029
+Buffer after strtok: HEAD
+Path to file relativ: (null)
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/css/default.css
+
+#   Failed test 'Status 200 HEAD /css/default.css'
+#   at t/00status.t line 74.
+#                   '500 read timeout'
+#     doesn't match '(?^:^200)'
+Error opening file: Bad address
+Note: logging is redirected to stdout.
+[7833] Starting server 'tinyweb'...
+Listen
+
+Port: 3 
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Childprocess: 7861
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/css/default.css
+Path to file relativ: web/css/default.css
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/css/default.css
+File to send: 6
+................
+HTTP/1.1 206 Partial Content
+Date: Fri Jul  8 19:53:31 2016
+ GMT
+Server: TinyWeb (Build Jun 12 2014)
+Accept-Ranges: bytes
+Last-Modified: Thu, 12 Jun 2014
+Content-Type: text/css
+Content-Length: 880
+Content-Range: bytes 6764-7767/7768
+Connection: Close
+
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "body web/css/default.css" 206 Partial Content 880
+Port in Client Connection: 3
+Process ID: 7861
+You are in the Fatherprocess: 7861
+Port in Client Connection: 3
+Process ID: 7861
+You are in the Fatherprocess: 7861
+Port in Client Connection: 3
+Process ID: 7861
+You are in the Fatherprocess: 7861
+Port in Client Connection: 3
+Process ID: 7861
+You are in the Childprocess: 8008
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/index.html
+Path to file relativ: web/index.html
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/index.html
+File to send: 11
+................
+HTTP/1.1 206 Partial Content
+Date: Fri Jul  8 19:59:32 2016
+ GMT
+Server: TinyWeb (Build Jun 12 2014)
+Accept-Ranges: bytes
+Last-Modified: Thu, 12 Jun 2014
+Content-Type: text/html
+Content-Length: 7582
+Content-Range: bytes 6764-7767/7768
+Connection: Close
+
+127.0.0.1 - - [Fri Jul  8 19:59:32 2016
+] "GET web/index.html" 206 Partial Content 7582
+Port in Client Connection: 3
+Process ID: 8008
+You are in the Childprocess: 8039
+Buffer after strtok: HEAD
+Path to file relativ: (null)
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/index.html
+
+#   Failed test 'Status 404 HEAD /blablabla.html'
+#   at t/00status.t line 74.
+#                   '500 read timeout'
+#     doesn't match '(?^:^404)'
+Error opening file: Bad address
+Note: logging is redirected to stdout.
+[7833] Starting server 'tinyweb'...
+Listen
+
+Port: 3 
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Childprocess: 7861
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/css/default.css
+Path to file relativ: web/css/default.css
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/css/default.css
+File to send: 6
+................
+HTTP/1.1 206 Partial Content
+Date: Fri Jul  8 19:53:31 2016
+ GMT
+Server: TinyWeb (Build Jun 12 2014)
+Accept-Ranges: bytes
+Last-Modified: Thu, 12 Jun 2014
+Content-Type: text/css
+Content-Length: 880
+Content-Range: bytes 6764-7767/7768
+Connection: Close
+
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "body web/css/default.css" 206 Partial Content 880
+Port in Client Connection: 3
+Process ID: 7861
+You are in the Fatherprocess: 7861
+Port in Client Connection: 3
+Process ID: 7861
+You are in the Childprocess: 7944
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/index.html
+Path to file relativ: web/index.html
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/index.html
+File to send: 9
+................
+HTTP/1.1 206 Partial Content
+Date: Fri Jul  8 19:56:32 2016
+ GMT
+Server: TinyWeb (Build Jun 12 2014)
+Accept-Ranges: bytes
+Last-Modified: Thu, 12 Jun 2014
+Content-Type: text/html
+Content-Length: 7582
+Content-Range: bytes 6764-7767/7768
+Connection: Close
+
+127.0.0.1 - - [Fri Jul  8 19:56:32 2016
+] "GET web/index.html" 206 Partial Content 7582
+Port in Client Connection: 3
+Process ID: 7944
+You are in the Fatherprocess: 7944
+Port in Client Connection: 3
+Process ID: 7944
+You are in the Fatherprocess: 7944
+Port in Client Connection: 3
+Process ID: 7944
+You are in the Childprocess: 8051
+Buffer after strtok: HEAD
+Path to file relativ: (null)
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/index.html
+
+#   Failed test 'Status 404 HEAD /css/xyz.html'
+#   at t/00status.t line 74.
+#                   '500 read timeout'
+#     doesn't match '(?^:^404)'
+# Looks like you failed 8 tests of 8.
+t/00status.t .... 
+Dubious, test returned 8 (wstat 2048, 0x800)
+Failed 8/8 subtests 
+
+#   Failed test 'Method GET: Status 200'
+#   at t/01methods.t line 66.
+#          got: '206'
+#     expected: '200'
+Error opening file: Bad address
+Note: logging is redirected to stdout.
+[7833] Starting server 'tinyweb'...
+Listen
+
+Port: 3 
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Fatherprocess: 7833
+Port in Client Connection: 3
+Process ID: 7833
+You are in the Childprocess: 7861
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/css/default.css
+Path to file relativ: web/css/default.css
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/css/default.css
+File to send: 6
+................
+HTTP/1.1 206 Partial Content
+Date: Fri Jul  8 19:53:31 2016
+ GMT
+Server: TinyWeb (Build Jun 12 2014)
+Accept-Ranges: bytes
+Last-Modified: Thu, 12 Jun 2014
+Content-Type: text/css
+Content-Length: 880
+Content-Range: bytes 6764-7767/7768
+Connection: Close
+
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "body web/css/default.css" 206 Partial Content 880
+Port in Client Connection: 3
+Process ID: 7861
+You are in the Fatherprocess: 7861
+Port in Client Connection: 3
+Process ID: 7861
+You are in the Childprocess: 7944
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/index.html
+Path to file relativ: web/index.html
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/index.html
+File to send: 9
+................
+HTTP/1.1 206 Partial Content
+Date: Fri Jul  8 19:56:32 2016
+ GMT
+Server: TinyWeb (Build Jun 12 2014)
+Accept-Ranges: bytes
+Last-Modified: Thu, 12 Jun 2014
+Content-Type: text/html
+Content-Length: 7582
+Content-Range: bytes 6764-7767/7768
+Connection: Close
+
+127.0.0.1 - - [Fri Jul  8 19:56:32 2016
+] "GET web/index.html" 206 Partial Content 7582
+Port in Client Connection: 3
+Process ID: 7944
+You are in the Fatherprocess: 7944
+Port in Client Connection: 3
+Process ID: 7944
+You are in the Childprocess: 8009
+Buffer after strtok: GET
+Filepath relativ in parse_HTTP_msg: web
+Filepath long relativ in parse_HTTP_msg: web/css/default.css
+Path to file relativ: web/css/default.css
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/css/default.css
+File to send: 12
+................
+HTTP/1.1 206 Partial Content
+Date: Fri Jul  8 19:59:32 2016
+ GMT
+Server: TinyWeb (Build Jun 12 2014)
+Accept-Ranges: bytes
+Last-Modified: Thu, 12 Jun 2014
+Content-Type: text/css
+Content-Length: 880
+Content-Range: bytes 6764-7767/7768
+Connection: Close
+
+127.0.0.1 - - [Fri Jul  8 19:59:32 2016
+] "body web/css/default.css" 206 Partial Content 880
+Port in Client Connection: 3
+Process ID: 8009
+You are in the Childprocess: 8064
+Buffer after strtok: HEAD
+Path to file relativ: (null)
+Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/css/default.css

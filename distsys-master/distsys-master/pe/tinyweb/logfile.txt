@@ -1,0 +1,335 @@
+127.0.0.1 - - [Fri Jul  8 13:58:44 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 13:58:44 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 13:58:44 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 13:58:44 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 13:58:44 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 14:11:53 2016
+] "
+£<;‹ƒŸTï%¤ web/images/computerhead1.gif" 206 Partial Content 8880
+127.0.0.1 - - [Fri Jul  8 14:11:53 2016
+] "
+£<;‹ƒŸTï%¤ web/images/computerhead1.gif" 206 Partial Content 8880
+127.0.0.1 - - [Fri Jul  8 14:17:32 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 14:17:32 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 14:18:22 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 14:17:32 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 14:22:45 2016
+] "
+£<;‹ƒŸTï%¤ web/images/computerhead1.gif" 206 Partial Content 8880
+127.0.0.1 - - [Fri Jul  8 14:22:45 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 14:22:45 2016
+] "
+£<;‹ƒŸTï%¤ web/images/computerhead1.gif" 206 Partial Content 8880
+127.0.0.1 - - [Fri Jul  8 14:31:59 2016
+] "GET web//index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 14:31:59 2016
+] "GET web//index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 14:34:13 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 14:34:13 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 14:34:13 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 14:44:43 2016
+] "
+£<;‹ƒŸTï%¤ web/images/computerhead1.gif" 206 Partial Content 8880
+127.0.0.1 - - [Fri Jul  8 14:44:43 2016
+] "
+£<;‹ƒŸTï%¤ web/images/computerhead1.gif" 206 Partial Content 8880
+127.0.0.1 - - [Fri Jul  8 14:53:33 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 14:53:33 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:40:21 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:40:21 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:40:21 2016
+] "
+£<;‹ƒŸTï%¤ web/images/computerhead1.gif" 206 Partial Content 8880
+127.0.0.1 - - [Fri Jul  8 16:40:21 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:44:09 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:44:09 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:47:09 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:44:09 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:47:09 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:44:09 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:44:09 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:47:09 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:49:21 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:44:09 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:47:09 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:44:09 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:49:21 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:44:09 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:52:22 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:47:09 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:49:21 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:44:09 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:47:09 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:44:09 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:44:09 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:49:21 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:44:09 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:54:48 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:44:09 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:52:22 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:49:21 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:44:09 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:55:20 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:52:22 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:49:21 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:44:09 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:47:09 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:49:21 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:44:09 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:47:09 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:44:09 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:54:48 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 16:41:08 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 17:10:54 2016
+] "GET web//index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 17:13:07 2016
+] "GET web//index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 17:13:07 2016
+] "body web//css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 17:13:07 2016
+] "GET web//index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 17:13:07 2016
+] "GET web//index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 17:17:37 2016
+] "GET web//index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 17:13:07 2016
+] "body web//css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 17:17:37 2016
+] "body web//css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 17:13:07 2016
+] "body web//css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 17:27:56 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 17:27:56 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 17:27:56 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 17:43:16 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 17:45:01 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 17:45:01 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 17:45:01 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 17:45:01 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 17:45:01 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 17:45:01 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 17:48:01 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 17:45:01 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 17:45:01 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 17:48:01 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 17:45:01 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 17:48:01 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 17:45:01 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 17:51:02 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 17:45:01 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 17:48:01 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 17:45:01 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 19:35:05 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 19:35:05 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 19:35:05 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 19:35:05 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 19:35:05 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 19:35:05 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 19:38:05 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 19:35:05 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 19:35:05 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 19:38:05 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 19:35:05 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 19:38:05 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 19:35:05 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 19:41:05 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 19:35:05 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 19:38:05 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 19:35:05 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 19:41:05 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 19:38:05 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 19:35:05 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 19:56:32 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 19:56:32 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 19:56:32 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 19:59:32 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 19:56:32 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 19:59:32 2016
+] "body web/css/default.css" 206 Partial Content 880
+127.0.0.1 - - [Fri Jul  8 19:56:32 2016
+] "GET web/index.html" 206 Partial Content 7582
+127.0.0.1 - - [Fri Jul  8 19:53:31 2016
+] "body web/css/default.css" 206 Partial Content 880
