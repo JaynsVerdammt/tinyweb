@@ -351,8 +351,12 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 	char buffer[BUFFER_SIZE];
 	char *buffer_for_log;
 	char *ptr;
+	char *p;
 	char *path_to_file_relativ;
 	char *response_header;
+	char str_GET[] = "GET";
+	//char str_HEAD[] = "HEAD";
+
 
 	printf("You are in the Childprocess: %d\n", getpid());
 	bzero(buffer, BUFFER_SIZE);
@@ -369,14 +373,21 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 	printf("Path to file relativ: %s\n", path_to_file_relativ);
 	char actualpath [PATH_MAX];
 
+	p = strtok(buffer, " ");
+
 	ptr = realpath(path_to_file_relativ, actualpath);
 	printf("Realpath to File: %s\n", actualpath);
-	if((file_to_send = open(ptr, O_RDWR, S_IWRITE | S_IREAD)) < 0)
-		{
-			error("Error opening file");
-			set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
-		}
-	printf("File to send: %i\n", file_to_send);
+
+	if(strcmp(p, str_GET) == 0)
+	{
+		printf("........test.............");
+		if((file_to_send = open(ptr, O_RDWR, S_IWRITE | S_IREAD)) < 0)
+			{
+				error("Error opening file");
+				set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
+			}
+		printf("File to send: %i\n", file_to_send);
+	}
 
 	response_header = create_HTTP_response_header(actualpath);
 	send(newsockfd, response_header, strlen(response_header), 0);
