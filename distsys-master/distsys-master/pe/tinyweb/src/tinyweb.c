@@ -264,7 +264,6 @@ int server_init(int port)
 		struct sockaddr_in server_addr;
 
 		// TODO: Error handling if not already done for valid or available Port
-
 		sockfd = socket(AF_INET, SOCK_STREAM, 0);
 
 		if(sockfd < 0)
@@ -299,6 +298,11 @@ void write_to_logfile(struct sockaddr_in cli_addr, char *path_to_file_relativ, c
 	    printf("Error opening file!\n");
 	    exit(1);
 	}
+   	time_t t;
+   	struct tm *ts;
+
+   	t = time(NULL);
+   	ts = localtime(&t);
 
 	char *p;
 	struct sockaddr_in* pV4Addr = (struct sockaddr_in*)&cli_addr;
@@ -306,7 +310,7 @@ void write_to_logfile(struct sockaddr_in cli_addr, char *path_to_file_relativ, c
 	char str[INET_ADDRSTRLEN];
 	inet_ntop( AF_INET, &ipAddr, str, INET_ADDRSTRLEN );
 	p = strtok(buffer, " ");
-	printf("%s - - [%s] \"%s %s\" %i %s %i\n", str, calculate_timestamp(), p, path_to_file_relativ, http_status_list[get_http_status()].code, http_status_list[get_http_status()].text, read_count_bytes);
+	printf("%s - - [%i/%s/%i:%02i:%02i:%02i +0200] \"%s %s\" %i %s %i\n", str, ts->tm_mday, get_month(ts->tm_mon), ts->tm_year + 1900, ts->tm_hour, ts->tm_min, ts->tm_sec, p, path_to_file_relativ, http_status_list[get_http_status()].code, http_status_list[get_http_status()].text, read_count_bytes);
 	fprintf(f, "%s - - [%s] \"%s %s\" %i %s %i\n", str, calculate_timestamp(), p, path_to_file_relativ, http_status_list[get_http_status()].code, http_status_list[get_http_status()].text, read_count_bytes);
 
 }
@@ -434,9 +438,14 @@ char* create_HTTP_response_header(const char *filename)
 	}
 
    	set_http_status(HTTP_STATUS_PARTIAL_CONTENT);
+   	time_t t;
+   	struct tm *ts;
+
+   	t = time(NULL);
+   	ts = localtime(&t);
 
 	sprintf(status_text, "HTTP/1.1 %i %s\r\n", http_status_list[get_http_status()].code, http_status_list[get_http_status()].text ); //TODO: status dynamisch uebergeben
-	sprintf(date_text, "Date: %s GMT\r\n", calculate_timestamp()); //TODO: Reutemann fragen ob das Format so passt
+	sprintf(date_text, "Date: %s, %i %s %i %02i:%02i:%02i GMT\r\n", get_weekday(ts->tm_wday), ts->tm_mday, get_month(ts->tm_mon), ts->tm_year + 1900, ts->tm_hour, ts->tm_min, ts->tm_sec); //TODO: Reutemann fragen ob das Format so passt
 	//sprintf(server_text, "Server: TinyWeb (Build Jun 12 2014)", ); //TODO: Buildzeit dynamisch einfuegen
 	//sprintf(last_modiefied_text, "Last-Modified: Thu, 12 Jun 2014\n", ); //TODO: Dateidatum einfuegen
 	sprintf(content_type_text, "Content-Type: %s\r\n",  get_http_content_type_str(get_http_content_type(filename)));
@@ -455,6 +464,41 @@ char* create_HTTP_response_header(const char *filename)
 	printf("%s", response_header);
 
 	return response_header;
+}
+
+char* get_month(int month)
+{
+	switch(month)
+	{
+	case 0: return "Jan";
+	case 1: return "Feb";
+	case 2: return "Mar";
+	case 3: return "Apr";
+	case 4: return "Mai";
+	case 5: return "Jun";
+	case 6: return "Jul";
+	case 7: return "Aug";
+	case 8: return "Sep";
+	case 9: return "Okt";
+	case 10: return "Nov";
+	case 11: return "Dec";
+	default: return "Month not found.";
+	}
+}
+
+char* get_weekday(int weekday)
+{
+	switch(weekday)
+	{
+	case 0: return "Sun";
+	case 1: return "Mon";
+	case 2: return "Tue";
+	case 3: return "Wed";
+	case 4: return "Thu";
+	case 5: return "Fri";
+	case 6: return "Sat";
+	default: return "Day not found!";
+	}
 }
 
 char* calculate_timestamp()

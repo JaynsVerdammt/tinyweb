@@ -36,6 +36,8 @@ typedef struct prog_options {
     int                 server_port;
 } prog_options_t;
 
+char* get_month(int month);
+char* get_weekday(int weekday);
 void set_http_status(http_status_t new_status);
 http_status_t get_http_status(void);
 char* calculate_timestamp();
