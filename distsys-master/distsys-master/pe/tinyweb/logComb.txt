@@ -995,3 +995,8 @@ You are in the Childprocess: 8064
 Buffer after strtok: HEAD
 Path to file relativ: (null)
 Realpath to File: /home/jens/git/tinyweb/distsys-master/distsys-master/pe/tinyweb/web/css/default.css
+Error on binding
+: Address already in use
+Note: logging is redirected to stdout.
+[8417] Starting server 'tinyweb'...
+Exit status:  1

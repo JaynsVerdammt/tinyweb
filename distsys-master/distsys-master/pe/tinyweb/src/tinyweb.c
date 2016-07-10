@@ -52,6 +52,7 @@
 static volatile sig_atomic_t server_running = false;
 prog_options_t my_opt;
 http_status_t status;
+bool statusSet =false;
 
 #define IS_ROOT_DIR(mode)   (S_ISDIR(mode) && ((S_IROTH || S_IXOTH) & (mode)))
 #define PATH_MAX 4096
@@ -200,7 +201,10 @@ get_options(int argc, char *argv[], prog_options_t *opt)
 
 void set_http_status(http_status_t new_status)
 {
+	if(!statusSet){
 	status = new_status;
+	statusSet=true;
+	}
 }
 
 http_status_t get_http_status(void)
@@ -326,7 +330,7 @@ void client_connection(int sockfd)
 	clilen = sizeof(cli_addr);
 	newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
 
-	printf("Process ID: %i\n", getpid());
+	printf("\nProcess ID: %i\n", getpid());
 
 	if(newsockfd < 0)
 	{
@@ -339,7 +343,7 @@ void client_connection(int sockfd)
 	case 0: child_processing(newsockfd, cli_addr);
 
 		break;
-	default: printf("You are in the Fatherprocess: %d\n", getpid());
+	default: //printf("You are in the Fatherprocess: %d\n", getpid());
 		break;
 	}
 }
@@ -367,26 +371,27 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 	if(read_error < 0)
 	{
 		error("Error reading from socket");
-		set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
+		//set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
 	}
 	path_to_file_relativ = parse_HTTP_msg(buffer);
-	printf("Path to file relativ: %s\n", path_to_file_relativ);
+	//printf("Path to file relativ: %s\n", path_to_file_relativ);
 	char actualpath [PATH_MAX];
 
 	p = strtok(buffer, " ");
 
 	ptr = realpath(path_to_file_relativ, actualpath);
 	printf("Realpath to File: %s\n", actualpath);
+	printf("Ptr: %s\n", ptr);
 
 	if(strcmp(p, str_GET) == 0)
 	{
-		printf("........test.............");
-		if((file_to_send = open(ptr, O_RDWR, S_IWRITE | S_IREAD)) < 0)
+		//printf("........test.............");
+		if((file_to_send = open(actualpath, O_RDWR, S_IWRITE | S_IREAD)) < 0)
 			{
 				error("Error opening file");
-				set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
+				set_http_status(HTTP_STATUS_NOT_FOUND);
 			}
-		printf("File to send: %i\n", file_to_send);
+		//printf("File to send: %i\n", file_to_send);
 	}
 
 	response_header = create_HTTP_response_header(actualpath);
@@ -399,7 +404,7 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 		if(write_to_socket(newsockfd, buffer, read_count_bytes, 1) < 0)
 			{
 				error("Error writing to socket");
-				set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
+				//set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
 			}
 		read_count_bytes = read(file_to_send, buffer, BUFFER_SIZE);
 		read_count_bytes_for_log += read_count_bytes;
@@ -408,7 +413,7 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 	if(read_count_bytes < 0)
 	{
 		error("Error reading from socket");
-		set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
+		//set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
 	}
 
 	//printf("Here is the message: %.*s\n", read_count_bytes, buffer);
@@ -416,7 +421,7 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 	if(read_error < 0)
 	{
 		error("Error writing to socket");
-		set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
+		//set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
 	}
 	write_to_logfile(cli_addr, path_to_file_relativ, buffer_for_log, read_count_bytes_for_log);
 	close(newsockfd);
@@ -424,7 +429,7 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 
 char* create_HTTP_response_header(const char *filename)
 {
-	printf("................\n");
+	//printf("................\n");
 	char* response_header = (char*) malloc(BUFFER_SIZE);
 
 	if(response_header == NULL)
@@ -448,7 +453,7 @@ char* create_HTTP_response_header(const char *filename)
 		printf("Error in file length calculating.\n");
 	}
 
-   	set_http_status(HTTP_STATUS_PARTIAL_CONTENT);
+   	//set_http_status(HTTP_STATUS_PARTIAL_CONTENT);
    	time_t t;
    	struct tm *ts;
 
@@ -531,7 +536,7 @@ char* parse_HTTP_msg(char buffer[])
 	char str_HEAD[] = "HEAD";
 	char *path_to_file;
 	p = strtok(buffer, " ");
-	printf("Buffer after strtok: %s\n", buffer);
+	//printf("Buffer after strtok: %s\n", buffer);
 	prog_options_t *opt = &my_opt;
 
 	if(strcmp(p, str_GET) == 0)
@@ -549,10 +554,10 @@ char* parse_HTTP_msg(char buffer[])
 		//strcpy ptr, root_dir
 		strcpy(path_to_file, opt->root_dir);
 
-		printf("Filepath relativ in parse_HTTP_msg: %s\n", opt->root_dir);
+		//printf("Filepath relativ in parse_HTTP_msg: %s\n", opt->root_dir);
 		//printf("Path_to_File in parse_HTTP_msg: %s\n", path_to_file);
 		strcat(path_to_file, p);
-		printf("Filepath long relativ in parse_HTTP_msg: %s\n", path_to_file);
+		//printf("Filepath long relativ in parse_HTTP_msg: %s\n", path_to_file);
 		return path_to_file;
 	}
 
