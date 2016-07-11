@@ -388,8 +388,10 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 		//printf("........test.............");
 		if((file_to_send = open(actualpath, O_RDWR, S_IWRITE | S_IREAD)) < 0)
 			{
-				error("Error opening file");
 				set_http_status(HTTP_STATUS_NOT_FOUND);
+				response_header = create_HTTP_response_header(actualpath);
+				send(newsockfd, response_header, strlen(response_header), 0);
+				error("Error opening file");
 			}
 		//printf("File to send: %i\n", file_to_send);
 	}
@@ -549,7 +551,7 @@ char* parse_HTTP_msg(char buffer[])
 
 		//strlen von opt->root_dir
 		int lenStr = strlen(opt->root_dir);
-		path_to_file = malloc (lenStr + 1);
+		path_to_file = malloc (lenStr + 24); //Bei + 24 tritt malloc overflow nicht mehr auf
 		//Fehlerbehandlung von malloc falls ptr ==0 TODO
 		//strcpy ptr, root_dir
 		strcpy(path_to_file, opt->root_dir);
