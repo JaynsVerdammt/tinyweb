@@ -204,6 +204,7 @@ void set_http_status(http_status_t new_status)
 	if(!statusSet){
 	status = new_status;
 	statusSet=true;
+	printf("Status gesetzt: %s", http_status_list[status].code);
 	}
 }
 
@@ -359,9 +360,9 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 	char *path_to_file_relativ;
 	char *response_header;
 	char str_GET[] = "GET";
-	//char str_HEAD[] = "HEAD";
+	char str_HEAD[] = "HEAD";
 
-
+	set_http_status(HTTP_STATUS_OK);
 	printf("You are in the Childprocess: %d\n", getpid());
 	bzero(buffer, BUFFER_SIZE);
 	read_error = read(newsockfd, buffer, BUFFER_SIZE - 1);
@@ -385,20 +386,35 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 
 	if(strcmp(p, str_GET) == 0)
 	{
+		if( access( actualpath, F_OK ) == -1 )
+		{
+			set_http_status(HTTP_STATUS_NOT_FOUND);
+		}
 		//printf("........test.............");
 		if((file_to_send = open(actualpath, O_RDWR, S_IWRITE | S_IREAD)) < 0)
 			{
 				set_http_status(HTTP_STATUS_NOT_FOUND);
-				response_header = create_HTTP_response_header(actualpath);
+				response_header = create_HTTP_response_header(actualpath, buffer);
 				send(newsockfd, response_header, strlen(response_header), 0);
 				error("Error opening file");
 			}
 		//printf("File to send: %i\n", file_to_send);
 	}
 
-	response_header = create_HTTP_response_header(actualpath);
+	if(strcmp(p, str_HEAD) == 0)
+	{
+		if( access( actualpath, F_OK ) == -1 )
+		{
+			set_http_status(HTTP_STATUS_NOT_FOUND);
+		}
+	}
+
+
+	response_header = create_HTTP_response_header(actualpath, buffer);
 	send(newsockfd, response_header, strlen(response_header), 0);
 
+	if(strcmp(p, str_GET) == 0)
+	{
 	int read_count_bytes = read(file_to_send, buffer, BUFFER_SIZE);
 	int read_count_bytes_for_log = read_count_bytes;
 	while(read_count_bytes > 0)
@@ -406,7 +422,7 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 		if(write_to_socket(newsockfd, buffer, read_count_bytes, 1) < 0)
 			{
 				error("Error writing to socket");
-				//set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
+				set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
 			}
 		read_count_bytes = read(file_to_send, buffer, BUFFER_SIZE);
 		read_count_bytes_for_log += read_count_bytes;
@@ -415,7 +431,7 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 	if(read_count_bytes < 0)
 	{
 		error("Error reading from socket");
-		//set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
+		set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
 	}
 
 	//printf("Here is the message: %.*s\n", read_count_bytes, buffer);
@@ -423,16 +439,25 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 	if(read_error < 0)
 	{
 		error("Error writing to socket");
-		//set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
+		set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
 	}
 	write_to_logfile(cli_addr, path_to_file_relativ, buffer_for_log, read_count_bytes_for_log);
+	}
 	close(newsockfd);
 }
 
-char* create_HTTP_response_header(const char *filename)
+char* create_HTTP_response_header(const char *filename, char buffer[])
 {
 	//printf("................\n");
 	char* response_header = (char*) malloc(BUFFER_SIZE);
+	int range_end;
+	int range_start = 0;
+	int content_length;
+	char *ptr;
+	char *lineRange = NULL;
+	//char *lineModified = NULL;
+
+
 
 	if(response_header == NULL)
 	{
@@ -442,7 +467,7 @@ char* create_HTTP_response_header(const char *filename)
 	char date_text[100] = "DATUM Funktion einbauen\r\n";
 	char server_text[100] = "Server: TinyWeb (Build Jun 12 2014)\r\n";
 	char accept_range_text[100] = "Accept-Ranges: bytes\r\n";
-	char last_modiefied_text[100] = "Last-Modified: Thu, 12 Jun 2014\r\n";
+	char last_modified_text[100] = "Last-Modified: Thu, 12 Jun 2014\r\n";
 	char content_type_text[100] = "Content-Type: text/html\r\n";
 	char content_length_text[100] = "Content-Length: 1004\r\n";
 	char content_range_text[100] = "Content-Range: bytes 6764-7767/7768\r\n";
@@ -462,19 +487,82 @@ char* create_HTTP_response_header(const char *filename)
    	t = time(NULL);
    	ts = localtime(&t);
 
+   	struct stat file_Info;
+
+
+
+
+
 	sprintf(status_text, "HTTP/1.1 %i %s\r\n", http_status_list[get_http_status()].code, http_status_list[get_http_status()].text ); //TODO: status dynamisch uebergeben
 	sprintf(date_text, "Date: %s, %i %s %i %02i:%02i:%02i GMT\r\n", get_weekday(ts->tm_wday), ts->tm_mday, get_month(ts->tm_mon), ts->tm_year + 1900, ts->tm_hour, ts->tm_min, ts->tm_sec); //TODO: Reutemann fragen ob das Format so passt
 	//sprintf(server_text, "Server: TinyWeb (Build Jun 12 2014)", ); //TODO: Buildzeit dynamisch einfuegen
-	//sprintf(last_modiefied_text, "Last-Modified: Thu, 12 Jun 2014\n", ); //TODO: Dateidatum einfuegen
+
+
+	ptr = strtok(NULL, "\n");
+	while (ptr != NULL) {
+		// extract line with the range if existing
+		if (strncmp(ptr,"Range",5) == 0) {
+			lineRange = ptr;
+		}
+		else if ((strncmp(ptr,"If-Modified-Since",strlen("If-Modified-Since"))) == 0) {
+			//lineModified = ptr;
+		}
+		ptr = strtok(NULL, "\n");
+	}
+
+	if (lineRange != NULL) {
+		char *range = malloc(strlen(lineRange)+1);
+		if (range == NULL) {
+			perror("Malloc():");
+		}
+		strtok(lineRange,"=");
+		range = strtok(NULL,"="); // after "="
+		range_start = atoi(strtok(range,"-"));
+		range_end = atoi(strtok(NULL,"-"));
+
+		printf("Start: %i End: %i", range_start, range_end);
+	}
+
+
+
+		int check;
+		check = stat(filename, &file_Info);
+
+		if (check < 0) {
+			set_http_status(HTTP_STATUS_NOT_FOUND);
+		}
+
+	   	// get last modified
+		char* last_modified = malloc(32);
+	   	struct tm * timeinfo;
+	   	timeinfo = localtime(&file_Info.st_mtim.tv_sec);
+
+	   	strftime (last_modified,32,"%a, %d %b %Y %H:%M:%S %Z",timeinfo);
+
+	sprintf(last_modified_text, "Last-Modified: %s\n", last_modified); //TODO: Dateidatum einfuegen
 	sprintf(content_type_text, "Content-Type: %s\r\n",  get_http_content_type_str(get_http_content_type(filename)));
-	sprintf(content_length_text, "Content-Length: %i\r\n", (int) buf.st_size);
-	//sprintf(content_range_text, "\n", ); //TODO: Frage was das ist und wie dynamisch abgefragt wird
+
+
+
+	range_end = file_Info.st_size;
+
+	if(range_end < 0)
+	{
+		error("Error with range");
+	}
+	else
+	{
+		content_length = range_end - range_start;
+	}
+
+	sprintf(content_length_text, "Content-Length: %i\r\n", content_length);
+	sprintf(content_range_text, "Content-Range: bytes %i-%i/%i\n", range_start, range_end, content_length ); //TODO: Frage was das ist und wie dynamisch abgefragt wird
 
 	strcat(response_header, status_text);
 	strcat(response_header, date_text);
 	strcat(response_header, server_text);
 	strcat(response_header, accept_range_text);
-	strcat(response_header, last_modiefied_text);
+	strcat(response_header, last_modified_text);
 	strcat(response_header, content_type_text);
 	strcat(response_header, content_length_text);
 	strcat(response_header, content_range_text);
@@ -549,17 +637,16 @@ char* parse_HTTP_msg(char buffer[])
 			p[n] = p[n+1];	//trim / from path
 		}*/
 
+
+
 		//strlen von opt->root_dir
 		int lenStr = strlen(opt->root_dir);
 		path_to_file = malloc (lenStr + 24); //Bei + 24 tritt malloc overflow nicht mehr auf
 		//Fehlerbehandlung von malloc falls ptr ==0 TODO
 		//strcpy ptr, root_dir
-		strcpy(path_to_file, opt->root_dir);
 
-		//printf("Filepath relativ in parse_HTTP_msg: %s\n", opt->root_dir);
-		//printf("Path_to_File in parse_HTTP_msg: %s\n", path_to_file);
+		strcpy(path_to_file, opt->root_dir);
 		strcat(path_to_file, p);
-		//printf("Filepath long relativ in parse_HTTP_msg: %s\n", path_to_file);
 		return path_to_file;
 	}
 

@@ -41,7 +41,7 @@ char* get_weekday(int weekday);
 void set_http_status(http_status_t new_status);
 http_status_t get_http_status(void);
 char* calculate_timestamp();
-char* create_HTTP_response_header(const char *filename);
+char* create_HTTP_response_header(const char *filename, char buffer[]);
 char* parse_HTTP_msg(char buffer[]);
 void child_processing(int newsockfd, struct sockaddr_in cli_addr);
 void client_connection(int sockfd);
