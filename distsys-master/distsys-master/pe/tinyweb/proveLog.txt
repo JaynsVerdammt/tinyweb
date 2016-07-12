@@ -1,731 +1,164 @@
-
-#   Failed test 'Date-Header: missing'
-#   at t/lib/TinyWebTest.pm line 77.
-
-#   Failed test 'Date-Header: missing'
-#   at t/lib/TinyWebTest.pm line 77.
-
-#   Failed test 'Date-Header: missing'
-#   at t/lib/TinyWebTest.pm line 77.
-
-#   Failed test 'Date-Header: missing'
-#   at t/lib/TinyWebTest.pm line 77.
-
-#   Failed test 'Date-Header: missing'
-#   at t/lib/TinyWebTest.pm line 77.
-# Looks like you failed 5 tests of 8.
-t/00date.t ...... 
-Dubious, test returned 5 (wstat 1280, 0x500)
-Failed 5/8 subtests 
-
-#   Failed test 'Server GET /index.html'
-#   at t/00server.t line 72.
-#          got: undef
-#     expected: anything else
-
-#   Failed test 'Server GET /css/default.css'
-#   at t/00server.t line 72.
-#          got: undef
-#     expected: anything else
-
-#   Failed test 'Server GET /blablabla.html'
-#   at t/00server.t line 72.
-#          got: undef
-#     expected: anything else
-
-#   Failed test 'Server GET /css/xyz.html'
-#   at t/00server.t line 72.
-#          got: undef
-#     expected: anything else
-
-#   Failed test 'Server HEAD /index.html'
-#   at t/00server.t line 72.
-#          got: undef
-#     expected: anything else
-
-#   Failed test 'Server HEAD /css/default.css'
-#   at t/00server.t line 72.
-#          got: undef
-#     expected: anything else
-
-#   Failed test 'Server HEAD /blablabla.html'
-#   at t/00server.t line 72.
-#          got: undef
-#     expected: anything else
-
-#   Failed test 'Server HEAD /css/xyz.html'
-#   at t/00server.t line 72.
-#          got: undef
-#     expected: anything else
-# Looks like you failed 8 tests of 8.
-t/00server.t .... 
-Dubious, test returned 8 (wstat 2048, 0x800)
-Failed 8/8 subtests 
-
-#   Failed test 'Status 200 GET /index.html'
-#   at t/00status.t line 74.
-#                   '500 read timeout'
-#     doesn't match '(?^:^200)'
-
-#   Failed test 'Status 200 GET /css/default.css'
-#   at t/00status.t line 74.
-#                   '500 read timeout'
-#     doesn't match '(?^:^200)'
-
-#   Failed test 'Status 404 GET /blablabla.html'
-#   at t/00status.t line 74.
-#                   '500 read timeout'
-#     doesn't match '(?^:^404)'
-
-#   Failed test 'Status 404 GET /css/xyz.html'
-#   at t/00status.t line 74.
-#                   '500 read timeout'
-#     doesn't match '(?^:^404)'
-
-#   Failed test 'Status 200 HEAD /index.html'
-#   at t/00status.t line 74.
-#                   '500 read timeout'
-#     doesn't match '(?^:^200)'
-
-#   Failed test 'Status 200 HEAD /css/default.css'
-#   at t/00status.t line 74.
-#                   '500 read timeout'
-#     doesn't match '(?^:^200)'
+t/00date.t ...... ok
+t/00server.t .... ok
 
 #   Failed test 'Status 404 HEAD /blablabla.html'
 #   at t/00status.t line 74.
-#                   '500 read timeout'
+#                   '200 OK'
 #     doesn't match '(?^:^404)'
-
-#   Failed test 'Status 404 HEAD /css/xyz.html'
-#   at t/00status.t line 74.
-#                   '500 read timeout'
-#     doesn't match '(?^:^404)'
-# Looks like you failed 8 tests of 8.
+# Looks like you failed 1 test of 8.
 t/00status.t .... 
-Dubious, test returned 8 (wstat 2048, 0x800)
-Failed 8/8 subtests 
-
-#   Failed test 'Method GET: no response'
-#   at t/01methods.t line 71.
-
-#   Failed test 'Method HEAD: no response'
-#   at t/01methods.t line 71.
-
-#   Failed test 'Method OPTIONS: no response'
-#   at t/01methods.t line 71.
-
-#   Failed test 'Method POST: no response'
-#   at t/01methods.t line 71.
-
-#   Failed test 'Method PUT: no response'
-#   at t/01methods.t line 71.
-
-#   Failed test 'Method DELETE: no response'
-#   at t/01methods.t line 71.
-
-#   Failed test 'Method TRACE: no response'
-#   at t/01methods.t line 71.
-
-#   Failed test 'Method CONNECT: no response'
-#   at t/01methods.t line 71.
-
-#   Failed test 'Method DUMMY: no response'
-#   at t/01methods.t line 71.
-# Looks like you failed 9 tests of 9.
-t/01methods.t ... 
-Dubious, test returned 9 (wstat 2304, 0x900)
-Failed 9/9 subtests 
-    
-    #   Failed test 'Status 200'
-    #   at t/02basic.t line 94.
-    #                   '500 read timeout'
-    #     doesn't match '(?^l:^200)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/02basic.t line 104.
-    #          got: undef
-    #     expected: anything else
+Dubious, test returned 1 (wstat 256, 0x100)
+Failed 1/8 subtests 
+t/01methods.t ... ok
     
     #   Failed test 'Last-Modified'
     #   at t/02basic.t line 113.
-    #          got: undef
-    #     expected: 'Fri, 08 Jul 2016 13:14:23 GMT'
+    #          got: 'Tue, 12 Jul 2016 16:12:37 GMT'
+    #     expected: 'Tue, 12 Jul 2016 16:12:40 GMT'
     
     #   Failed test 'Content-Length'
     #   at t/02basic.t line 119.
-    #          got: undef
+    #          got: '8880'
     #     expected: '7582'
-    
-    #   Failed test 'Response body length: 7582'
-    #   at t/lib/TinyWebTest.pm line 39.
-    #          got: '75'
-    #     expected: '7582'
-    
-    #   Failed test 'Response body content: 'web/index.html''
-    #   at t/lib/TinyWebTest.pm line 51.
-    # Looks like you failed 7 tests of 7.
-
-#   Failed test 'GET '/index.html''
-#   at t/02basic.t line 126.
-    
-    #   Failed test 'Status 200'
-    #   at t/02basic.t line 94.
-    #                   '500 read timeout'
-    #     doesn't match '(?^l:^200)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/02basic.t line 104.
-    #          got: undef
-    #     expected: anything else
-    
-    #   Failed test 'Last-Modified'
-    #   at t/02basic.t line 113.
-    #          got: undef
-    #     expected: 'Fri, 08 Jul 2016 13:14:23 GMT'
-    
-    #   Failed test 'Content-Length'
-    #   at t/02basic.t line 119.
-    #          got: undef
-    #     expected: '7582'
-    # Looks like you failed 5 tests of 5.
+    # Looks like you failed 2 tests of 5.
 
 #   Failed test 'HEAD '/index.html''
 #   at t/02basic.t line 126.
     
-    #   Failed test 'Status 200'
-    #   at t/02basic.t line 94.
-    #                   '500 read timeout'
-    #     doesn't match '(?^l:^200)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/02basic.t line 104.
-    #          got: undef
-    #     expected: anything else
-    
     #   Failed test 'Last-Modified'
     #   at t/02basic.t line 113.
-    #          got: undef
-    #     expected: 'Fri, 08 Jul 2016 13:14:20 GMT'
+    #          got: 'Tue, 12 Jul 2016 16:12:37 GMT'
+    #     expected: 'Tue, 12 Jul 2016 16:12:38 GMT'
     
     #   Failed test 'Content-Length'
     #   at t/02basic.t line 119.
-    #          got: undef
-    #     expected: '8880'
-    # Looks like you failed 5 tests of 5.
-
-#   Failed test 'HEAD '/images/computerhead1.gif''
-#   at t/02basic.t line 126.
-    
-    #   Failed test 'Status 200'
-    #   at t/02basic.t line 94.
-    #                   '500 read timeout'
-    #     doesn't match '(?^l:^200)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/02basic.t line 104.
-    #          got: undef
-    #     expected: anything else
-    
-    #   Failed test 'Last-Modified'
-    #   at t/02basic.t line 113.
-    #          got: undef
-    #     expected: 'Fri, 08 Jul 2016 13:14:20 GMT'
-    
-    #   Failed test 'Content-Length'
-    #   at t/02basic.t line 119.
-    #          got: undef
-    #     expected: '8880'
-    
-    #   Failed test 'Response body length: 8880'
-    #   at t/lib/TinyWebTest.pm line 39.
-    #          got: '75'
-    #     expected: '8880'
-    
-    #   Failed test 'Response body content: 'web/images/computerhead1.gif''
-    #   at t/lib/TinyWebTest.pm line 51.
-    # Looks like you failed 7 tests of 7.
-
-#   Failed test 'GET '/images/computerhead1.gif''
-#   at t/02basic.t line 126.
-    
-    #   Failed test 'Status 200'
-    #   at t/02basic.t line 94.
-    #                   '500 read timeout'
-    #     doesn't match '(?^l:^200)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/02basic.t line 104.
-    #          got: undef
-    #     expected: anything else
-    
-    #   Failed test 'Last-Modified'
-    #   at t/02basic.t line 113.
-    #          got: undef
-    #     expected: 'Fri, 08 Jul 2016 13:14:21 GMT'
-    
-    #   Failed test 'Content-Length'
-    #   at t/02basic.t line 119.
-    #          got: undef
+    #          got: '880'
     #     expected: '148019'
-    # Looks like you failed 5 tests of 5.
+    # Looks like you failed 2 tests of 5.
 
 #   Failed test 'HEAD '/example.pdf''
 #   at t/02basic.t line 126.
     
-    #   Failed test 'Status 200'
-    #   at t/02basic.t line 94.
-    #                   '500 read timeout'
-    #     doesn't match '(?^l:^200)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/02basic.t line 104.
-    #          got: undef
-    #     expected: anything else
-    
-    #   Failed test 'Last-Modified'
-    #   at t/02basic.t line 113.
-    #          got: undef
-    #     expected: 'Fri, 08 Jul 2016 13:14:21 GMT'
-    
     #   Failed test 'Content-Length'
     #   at t/02basic.t line 119.
-    #          got: undef
-    #     expected: '148019'
-    
-    #   Failed test 'Response body length: 148019'
-    #   at t/lib/TinyWebTest.pm line 39.
-    #          got: '75'
-    #     expected: '148019'
-    
-    #   Failed test 'Response body content: 'web/example.pdf''
-    #   at t/lib/TinyWebTest.pm line 51.
-    # Looks like you failed 7 tests of 7.
-
-#   Failed test 'GET '/example.pdf''
-#   at t/02basic.t line 126.
-    
-    #   Failed test 'Status 200'
-    #   at t/02basic.t line 94.
-    #                   '500 read timeout'
-    #     doesn't match '(?^l:^200)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/02basic.t line 104.
-    #          got: undef
-    #     expected: anything else
-    
-    #   Failed test 'Last-Modified'
-    #   at t/02basic.t line 113.
-    #          got: undef
-    #     expected: 'Fri, 08 Jul 2016 13:14:20 GMT'
-    
-    #   Failed test 'Content-Length'
-    #   at t/02basic.t line 119.
-    #          got: undef
+    #          got: '8880'
     #     expected: '880'
-    # Looks like you failed 5 tests of 5.
+    # Looks like you failed 1 test of 5.
 
 #   Failed test 'HEAD '/css/default.css''
 #   at t/02basic.t line 126.
     
-    #   Failed test 'Status 200'
-    #   at t/02basic.t line 94.
-    #                   '500 read timeout'
-    #     doesn't match '(?^l:^200)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/02basic.t line 104.
-    #          got: undef
-    #     expected: anything else
-    
-    #   Failed test 'Last-Modified'
-    #   at t/02basic.t line 113.
-    #          got: undef
-    #     expected: 'Fri, 08 Jul 2016 13:14:20 GMT'
-    
-    #   Failed test 'Content-Length'
-    #   at t/02basic.t line 119.
-    #          got: undef
-    #     expected: '880'
-    
-    #   Failed test 'Response body length: 880'
-    #   at t/lib/TinyWebTest.pm line 39.
-    #          got: '75'
-    #     expected: '880'
-    
-    #   Failed test 'Response body content: 'web/css/default.css''
-    #   at t/lib/TinyWebTest.pm line 51.
-    # Looks like you failed 7 tests of 7.
-
-#   Failed test 'GET '/css/default.css''
-#   at t/02basic.t line 126.
-    
     #   Failed test 'Status 404'
     #   at t/02basic.t line 94.
-    #                   '500 read timeout'
+    #                   '200 OK'
     #     doesn't match '(?^l:^404)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/02basic.t line 104.
-    #          got: undef
-    #     expected: anything else
-    # Looks like you failed 3 tests of 3.
+    # Looks like you failed 1 test of 3.
 
 #   Failed test 'HEAD '/blablabla.html''
 #   at t/02basic.t line 126.
     
-    #   Failed test 'Status 404'
-    #   at t/02basic.t line 94.
-    #                   '500 read timeout'
-    #     doesn't match '(?^l:^404)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/02basic.t line 104.
-    #          got: undef
-    #     expected: anything else
-    # Looks like you failed 3 tests of 3.
-
-#   Failed test 'GET '/blablabla.html''
-#   at t/02basic.t line 126.
-    
-    #   Failed test 'Status 200'
-    #   at t/02basic.t line 94.
-    #                   '500 read timeout'
-    #     doesn't match '(?^l:^200)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/02basic.t line 104.
-    #          got: undef
-    #     expected: anything else
-    
     #   Failed test 'Last-Modified'
     #   at t/02basic.t line 113.
-    #          got: undef
-    #     expected: 'Fri, 08 Jul 2016 13:14:21 GMT'
+    #          got: 'Tue, 12 Jul 2016 16:12:37 GMT'
+    #     expected: 'Tue, 12 Jul 2016 16:12:38 GMT'
     
     #   Failed test 'Content-Length'
     #   at t/02basic.t line 119.
-    #          got: undef
+    #          got: '8880'
     #     expected: '80000051'
-    # Looks like you failed 5 tests of 5.
+    # Looks like you failed 2 tests of 5.
 
 #   Failed test 'HEAD '/longtext.txt''
 #   at t/02basic.t line 126.
     
-    #   Failed test 'Status 200'
-    #   at t/02basic.t line 94.
-    #                   '500 read timeout'
-    #     doesn't match '(?^l:^200)'
+    #   Failed test 'Date Tue Jul 12 21:07:54 2016'
+    #   at t/lib/TinyWebTest.pm line 72.
+Out of memory!
+    # Child (GET '/longtext.txt') exited without calling finalize()
     
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/02basic.t line 104.
-    #          got: undef
-    #     expected: anything else
-    
-    #   Failed test 'Last-Modified'
-    #   at t/02basic.t line 113.
-    #          got: undef
-    #     expected: 'Fri, 08 Jul 2016 13:14:21 GMT'
-    
-    #   Failed test 'Content-Length'
-    #   at t/02basic.t line 119.
-    #          got: undef
-    #     expected: '80000051'
-    
-    #   Failed test 'Response body length: 80000051'
-    #   at t/lib/TinyWebTest.pm line 39.
-    #          got: '75'
-    #     expected: '80000051'
-    
-    #   Failed test 'Response body content: 'web/longtext.txt''
-    #   at t/lib/TinyWebTest.pm line 51.
-    # Looks like you failed 7 tests of 7.
-
-#   Failed test 'GET '/longtext.txt''
-#   at t/02basic.t line 126.
-# Looks like you failed 12 tests of 12.
+    #   Failed test 'GET '/longtext.txt''
+    #   at t/lib/TinyWebTest.pm line 30.
+    # Tests were run but no plan was declared and done_testing() was not seen.
 t/02basic.t ..... 
-Dubious, test returned 12 (wstat 3072, 0xc00)
-Failed 12/12 subtests 
-
-#   Failed test 'text/html <- GET /index.html'
-#   at t/02mime.t line 78.
-#          got: 'text/plain'
-#     expected: 'text/html'
-
-#   Failed test 'text/html <- HEAD /index.html'
-#   at t/02mime.t line 78.
-#          got: 'text/plain'
-#     expected: 'text/html'
+Dubious, test returned 1 (wstat 256, 0x100)
+Failed 6/12 subtests 
 
 #   Failed test 'image/gif <- HEAD /images/computerhead1.gif'
 #   at t/02mime.t line 78.
 #          got: 'text/plain'
 #     expected: 'image/gif'
 
-#   Failed test 'image/gif <- GET /images/computerhead1.gif'
-#   at t/02mime.t line 78.
-#          got: 'text/plain'
-#     expected: 'image/gif'
-
 #   Failed test 'application/pdf <- HEAD /example.pdf'
 #   at t/02mime.t line 78.
-#          got: 'text/plain'
-#     expected: 'application/pdf'
-
-#   Failed test 'application/pdf <- GET /example.pdf'
-#   at t/02mime.t line 78.
-#          got: 'text/plain'
+#          got: 'text/html'
 #     expected: 'application/pdf'
 
 #   Failed test 'text/css <- HEAD /css/default.css'
 #   at t/02mime.t line 78.
-#          got: 'text/plain'
+#          got: 'text/html'
 #     expected: 'text/css'
-
-#   Failed test 'text/css <- GET /css/default.css'
-#   at t/02mime.t line 78.
-#          got: 'text/plain'
-#     expected: 'text/css'
-
-#   Failed test 'image/jpeg <- GET /zeros1.jpg'
-#   at t/02mime.t line 78.
-#          got: 'text/plain'
-#     expected: 'image/jpeg'
-
-#   Failed test 'image/jpeg <- GET /zeros2.jpg'
-#   at t/02mime.t line 78.
-#          got: 'text/plain'
-#     expected: 'image/jpeg'
-
-#   Failed test 'image/jpeg <- GET /zeros3.jpg'
-#   at t/02mime.t line 78.
-#          got: 'text/plain'
-#     expected: 'image/jpeg'
-# Looks like you failed 11 tests of 11.
+# Looks like you failed 3 tests of 11.
 t/02mime.t ...... 
-Dubious, test returned 11 (wstat 2816, 0xb00)
-Failed 11/11 subtests 
-    
-    #   Failed test 'Status'
-    #   at t/02zero.t line 83.
-    #                   '500 read timeout'
-    #     doesn't match '(?^l:^200)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/02zero.t line 93.
-    #          got: undef
-    #     expected: anything else
-    
-    #   Failed test 'Content-Length'
-    #   at t/02zero.t line 103.
-    #          got: undef
-    #     expected: '1'
-    
-    #   Failed test 'Response body length: 1'
-    #   at t/lib/TinyWebTest.pm line 39.
-    #          got: '75'
-    #     expected: '1'
-    
-    #   Failed test 'Response body content: 'web/zeros1.jpg''
-    #   at t/lib/TinyWebTest.pm line 51.
-    # Looks like you failed 6 tests of 6.
-
-#   Failed test 'GET '/zeros1.jpg''
-#   at t/02zero.t line 110.
-    
-    #   Failed test 'Status'
-    #   at t/02zero.t line 83.
-    #                   '500 read timeout'
-    #     doesn't match '(?^l:^200)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/02zero.t line 93.
-    #          got: undef
-    #     expected: anything else
-    
-    #   Failed test 'Content-Length'
-    #   at t/02zero.t line 103.
-    #          got: undef
-    #     expected: '1024'
-    
-    #   Failed test 'Response body length: 1024'
-    #   at t/lib/TinyWebTest.pm line 39.
-    #          got: '75'
-    #     expected: '1024'
-    
-    #   Failed test 'Response body content: 'web/zeros2.jpg''
-    #   at t/lib/TinyWebTest.pm line 51.
-    # Looks like you failed 6 tests of 6.
-
-#   Failed test 'GET '/zeros2.jpg''
-#   at t/02zero.t line 110.
-    
-    #   Failed test 'Status'
-    #   at t/02zero.t line 83.
-    #                   '500 read timeout'
-    #     doesn't match '(?^l:^200)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/02zero.t line 93.
-    #          got: undef
-    #     expected: anything else
-    
-    #   Failed test 'Content-Length'
-    #   at t/02zero.t line 103.
-    #          got: undef
-    #     expected: '20000'
-    
-    #   Failed test 'Response body length: 20000'
-    #   at t/lib/TinyWebTest.pm line 39.
-    #          got: '75'
-    #     expected: '20000'
-    
-    #   Failed test 'Response body content: 'web/zeros3.jpg''
-    #   at t/lib/TinyWebTest.pm line 51.
-    # Looks like you failed 6 tests of 6.
-
-#   Failed test 'GET '/zeros3.jpg''
-#   at t/02zero.t line 110.
-# Looks like you failed 3 tests of 3.
-t/02zero.t ...... 
 Dubious, test returned 3 (wstat 768, 0x300)
-Failed 3/3 subtests 
+Failed 3/11 subtests 
+t/02zero.t ...... ok
     
     #   Failed test 'Status'
     #   at t/03moved.t line 83.
-    #                   '500 read timeout'
+    #                   '200 OK'
     #     doesn't match '(?^l:^301)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/03moved.t line 93.
-    #          got: undef
-    #     expected: anything else
 Use of uninitialized value $this in pattern match (m//) at t/03moved.t line 103.
     
     #   Failed test 'Location'
     #   at t/03moved.t line 103.
     #                   undef
     #     doesn't match '(?^l:/css/$)'
-    # Looks like you failed 4 tests of 4.
+    # Looks like you failed 2 tests of 4.
 
 #   Failed test 'HEAD '/css''
 #   at t/03moved.t line 105.
     
     #   Failed test 'Status'
     #   at t/03moved.t line 83.
-    #                   '500 read timeout'
+    #                   '404 Not Found'
     #     doesn't match '(?^l:^301)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/03moved.t line 93.
-    #          got: undef
-    #     expected: anything else
 Use of uninitialized value $this in pattern match (m//) at t/03moved.t line 103.
     
     #   Failed test 'Location'
     #   at t/03moved.t line 103.
     #                   undef
     #     doesn't match '(?^l:/css/$)'
-    # Looks like you failed 4 tests of 4.
+    # Looks like you failed 2 tests of 4.
 
 #   Failed test 'GET '/css''
 #   at t/03moved.t line 105.
     
     #   Failed test 'Status'
     #   at t/03moved.t line 83.
-    #                   '500 read timeout'
+    #                   '200 OK'
     #     doesn't match '(?^l:^301)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/03moved.t line 93.
-    #          got: undef
-    #     expected: anything else
 Use of uninitialized value $this in pattern match (m//) at t/03moved.t line 103.
     
     #   Failed test 'Location'
     #   at t/03moved.t line 103.
     #                   undef
     #     doesn't match '(?^l:/source/$)'
-    # Looks like you failed 4 tests of 4.
+    # Looks like you failed 2 tests of 4.
 
 #   Failed test 'HEAD '/source''
 #   at t/03moved.t line 105.
     
     #   Failed test 'Status'
     #   at t/03moved.t line 83.
-    #                   '500 read timeout'
+    #                   '404 Not Found'
     #     doesn't match '(?^l:^301)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/03moved.t line 93.
-    #          got: undef
-    #     expected: anything else
 Use of uninitialized value $this in pattern match (m//) at t/03moved.t line 103.
     
     #   Failed test 'Location'
     #   at t/03moved.t line 103.
     #                   undef
     #     doesn't match '(?^l:/source/$)'
-    # Looks like you failed 4 tests of 4.
+    # Looks like you failed 2 tests of 4.
 
 #   Failed test 'GET '/source''
 #   at t/03moved.t line 105.
@@ -736,576 +169,315 @@ Failed 4/4 subtests
     
     #   Failed test 'Status'
     #   at t/04modsince.t line 91.
-    #                   '500 read timeout'
+    #                   '200 OK'
     #     doesn't match '(?^l:^304)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/04modsince.t line 101.
-    #          got: undef
-    #     expected: anything else
-    # Looks like you failed 3 tests of 3.
+    # Looks like you failed 1 test of 3.
 
 #   Failed test 'GET '/images/computerhead1.gif''
 #   at t/04modsince.t line 123.
     
     #   Failed test 'Status'
     #   at t/04modsince.t line 91.
-    #                   '500 read timeout'
+    #                   '200 OK'
     #     doesn't match '(?^l:^304)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/04modsince.t line 101.
-    #          got: undef
-    #     expected: anything else
-    # Looks like you failed 3 tests of 3.
+    # Looks like you failed 1 test of 3.
 
 #   Failed test 'GET '/images/computerhead1.gif''
 #   at t/04modsince.t line 123.
     
     #   Failed test 'Status'
     #   at t/04modsince.t line 91.
-    #                   '500 read timeout'
-    #     doesn't match '(?^l:^200)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/04modsince.t line 101.
-    #          got: undef
-    #     expected: anything else
-    
-    #   Failed test 'Last-Modified'
-    #   at t/04modsince.t line 110.
-    #          got: undef
-    #     expected: 'Fri, 08 Jul 2016 13:14:20 GMT'
-    
-    #   Failed test 'Content-Length'
-    #   at t/04modsince.t line 116.
-    #          got: undef
-    #     expected: '8880'
-    
-    #   Failed test 'Response body length: 8880'
-    #   at t/lib/TinyWebTest.pm line 39.
-    #          got: '75'
-    #     expected: '8880'
-    
-    #   Failed test 'Response body content: 'web/images/computerhead1.gif''
-    #   at t/lib/TinyWebTest.pm line 51.
-    # Looks like you failed 7 tests of 7.
-
-#   Failed test 'GET '/images/computerhead1.gif''
-#   at t/04modsince.t line 123.
-    
-    #   Failed test 'Status'
-    #   at t/04modsince.t line 91.
-    #                   '500 read timeout'
+    #                   '200 OK'
     #     doesn't match '(?^l:^304)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/04modsince.t line 101.
-    #          got: undef
-    #     expected: anything else
-    # Looks like you failed 3 tests of 3.
+    # Looks like you failed 1 test of 3.
 
 #   Failed test 'GET '/images/computerhead1.gif''
 #   at t/04modsince.t line 123.
-    
-    #   Failed test 'Status'
-    #   at t/04modsince.t line 91.
-    #                   '500 read timeout'
-    #     doesn't match '(?^l:^200)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/04modsince.t line 101.
-    #          got: undef
-    #     expected: anything else
-    
-    #   Failed test 'Last-Modified'
-    #   at t/04modsince.t line 110.
-    #          got: undef
-    #     expected: 'Fri, 08 Jul 2016 13:14:20 GMT'
-    
-    #   Failed test 'Content-Length'
-    #   at t/04modsince.t line 116.
-    #          got: undef
-    #     expected: '8880'
-    
-    #   Failed test 'Response body length: 8880'
-    #   at t/lib/TinyWebTest.pm line 39.
-    #          got: '75'
-    #     expected: '8880'
-    
-    #   Failed test 'Response body content: 'web/images/computerhead1.gif''
-    #   at t/lib/TinyWebTest.pm line 51.
-    # Looks like you failed 7 tests of 7.
-
-#   Failed test 'GET '/images/computerhead1.gif''
-#   at t/04modsince.t line 123.
-# Looks like you failed 5 tests of 5.
+# Looks like you failed 3 tests of 5.
 t/04modsince.t .. 
-Dubious, test returned 5 (wstat 1280, 0x500)
-Failed 5/5 subtests 
+Dubious, test returned 3 (wstat 768, 0x300)
+Failed 3/5 subtests 
     
     #   Failed test 'Status'
     #   at t/04range.t line 100.
-    #                   '500 read timeout'
+    #                   '200 OK'
     #     doesn't match '(?^l:^416)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/04range.t line 110.
-    #          got: undef
-    #     expected: anything else
-    # Looks like you failed 3 tests of 3.
+    # Looks like you failed 1 test of 3.
 
 #   Failed test 'GET '/index.html''
 #   at t/04range.t line 142.
     
     #   Failed test 'Status'
     #   at t/04range.t line 100.
-    #                   '500 read timeout'
+    #                   '200 OK'
     #     doesn't match '(?^l:^206)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/04range.t line 110.
-    #          got: undef
-    #     expected: anything else
-    
-    #   Failed test 'Last-Modified'
-    #   at t/04range.t line 119.
-    #          got: undef
-    #     expected: 'Fri, 08 Jul 2016 13:14:23 GMT'
     
     #   Failed test 'Content-Length'
     #   at t/04range.t line 125.
-    #          got: undef
+    #          got: '7582'
     #     expected: '6582'
     
     #   Failed test 'Content-Range'
     #   at t/04range.t line 133.
-    #          got: undef
+    #          got: 'bytes 0-7582/7582'
     #     expected: 'bytes 1000-7581/7582'
     
     #   Failed test 'Response body length: 7582'
     #   at t/lib/TinyWebTest.pm line 39.
-    #          got: '75'
+    #          got: '7582'
     #     expected: '6582'
     
     #   Failed test 'Response body content: 'web/index.html''
     #   at t/lib/TinyWebTest.pm line 51.
-    # Looks like you failed 8 tests of 8.
+    # Looks like you failed 5 tests of 8.
 
 #   Failed test 'GET '/index.html''
 #   at t/04range.t line 142.
     
     #   Failed test 'Status'
     #   at t/04range.t line 100.
-    #                   '500 read timeout'
+    #                   '200 OK'
     #     doesn't match '(?^l:^206)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/04range.t line 110.
-    #          got: undef
-    #     expected: anything else
-    
-    #   Failed test 'Last-Modified'
-    #   at t/04range.t line 119.
-    #          got: undef
-    #     expected: 'Fri, 08 Jul 2016 13:14:23 GMT'
     
     #   Failed test 'Content-Length'
     #   at t/04range.t line 125.
-    #          got: undef
+    #          got: '7582'
     #     expected: '7581'
     
     #   Failed test 'Content-Range'
     #   at t/04range.t line 133.
-    #          got: undef
+    #          got: 'bytes 0-7582/7582'
     #     expected: 'bytes 1-7581/7582'
     
     #   Failed test 'Response body length: 7582'
     #   at t/lib/TinyWebTest.pm line 39.
-    #          got: '75'
+    #          got: '7582'
     #     expected: '7581'
     
     #   Failed test 'Response body content: 'web/index.html''
     #   at t/lib/TinyWebTest.pm line 51.
-    # Looks like you failed 8 tests of 8.
+    # Looks like you failed 5 tests of 8.
 
 #   Failed test 'GET '/index.html''
 #   at t/04range.t line 142.
     
     #   Failed test 'Status'
     #   at t/04range.t line 100.
-    #                   '500 read timeout'
+    #                   '200 OK'
     #     doesn't match '(?^l:^206)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/04range.t line 110.
-    #          got: undef
-    #     expected: anything else
-    
-    #   Failed test 'Last-Modified'
-    #   at t/04range.t line 119.
-    #          got: undef
-    #     expected: 'Fri, 08 Jul 2016 13:14:23 GMT'
     
     #   Failed test 'Content-Length'
     #   at t/04range.t line 125.
-    #          got: undef
+    #          got: '7582'
     #     expected: '1'
     
     #   Failed test 'Content-Range'
     #   at t/04range.t line 133.
-    #          got: undef
+    #          got: 'bytes 0-7582/7582'
     #     expected: 'bytes 7581-7581/7582'
     
     #   Failed test 'Response body length: 7582'
     #   at t/lib/TinyWebTest.pm line 39.
-    #          got: '75'
+    #          got: '7582'
     #     expected: '1'
     
     #   Failed test 'Response body content: 'web/index.html''
     #   at t/lib/TinyWebTest.pm line 51.
-    # Looks like you failed 8 tests of 8.
+    # Looks like you failed 5 tests of 8.
 
 #   Failed test 'GET '/index.html''
 #   at t/04range.t line 142.
     
     #   Failed test 'Status'
     #   at t/04range.t line 100.
-    #                   '500 read timeout'
+    #                   '200 OK'
     #     doesn't match '(?^l:^206)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/04range.t line 110.
-    #          got: undef
-    #     expected: anything else
-    
-    #   Failed test 'Last-Modified'
-    #   at t/04range.t line 119.
-    #          got: undef
-    #     expected: 'Fri, 08 Jul 2016 13:14:23 GMT'
     
     #   Failed test 'Content-Length'
     #   at t/04range.t line 125.
-    #          got: undef
+    #          got: '7582'
     #     expected: '499'
     
     #   Failed test 'Content-Range'
     #   at t/04range.t line 133.
-    #          got: undef
+    #          got: 'bytes 0-7582/7582'
     #     expected: 'bytes 7083-7581/7582'
     
     #   Failed test 'Response body length: 7582'
     #   at t/lib/TinyWebTest.pm line 39.
-    #          got: '75'
+    #          got: '7582'
     #     expected: '499'
     
     #   Failed test 'Response body content: 'web/index.html''
     #   at t/lib/TinyWebTest.pm line 51.
-    # Looks like you failed 8 tests of 8.
+    # Looks like you failed 5 tests of 8.
 
 #   Failed test 'GET '/index.html''
 #   at t/04range.t line 142.
     
     #   Failed test 'Status'
     #   at t/04range.t line 100.
-    #                   '500 read timeout'
+    #                   '200 OK'
     #     doesn't match '(?^l:^206)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/04range.t line 110.
-    #          got: undef
-    #     expected: anything else
-    
-    #   Failed test 'Last-Modified'
-    #   at t/04range.t line 119.
-    #          got: undef
-    #     expected: 'Fri, 08 Jul 2016 13:14:23 GMT'
     
     #   Failed test 'Content-Length'
     #   at t/04range.t line 125.
-    #          got: undef
+    #          got: '7582'
     #     expected: '7082'
     
     #   Failed test 'Content-Range'
     #   at t/04range.t line 133.
-    #          got: undef
+    #          got: 'bytes 0-7582/7582'
     #     expected: 'bytes 500-7581/7582'
     
     #   Failed test 'Response body length: 7582'
     #   at t/lib/TinyWebTest.pm line 39.
-    #          got: '75'
+    #          got: '7582'
     #     expected: '7082'
     
     #   Failed test 'Response body content: 'web/index.html''
     #   at t/lib/TinyWebTest.pm line 51.
-    # Looks like you failed 8 tests of 8.
+    # Looks like you failed 5 tests of 8.
 
 #   Failed test 'GET '/index.html''
 #   at t/04range.t line 142.
     
     #   Failed test 'Status'
     #   at t/04range.t line 100.
-    #                   '500 read timeout'
+    #                   '200 OK'
     #     doesn't match '(?^l:^416)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/04range.t line 110.
-    #          got: undef
-    #     expected: anything else
-    # Looks like you failed 3 tests of 3.
+    # Looks like you failed 1 test of 3.
 
 #   Failed test 'GET '/images/computerhead1.gif''
 #   at t/04range.t line 142.
     
     #   Failed test 'Status'
     #   at t/04range.t line 100.
-    #                   '500 read timeout'
+    #                   '200 OK'
     #     doesn't match '(?^l:^416)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/04range.t line 110.
-    #          got: undef
-    #     expected: anything else
-    # Looks like you failed 3 tests of 3.
+    # Looks like you failed 1 test of 3.
 
 #   Failed test 'GET '/images/computerhead1.gif''
 #   at t/04range.t line 142.
     
     #   Failed test 'Status'
     #   at t/04range.t line 100.
-    #                   '500 read timeout'
+    #                   '200 OK'
     #     doesn't match '(?^l:^206)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/04range.t line 110.
-    #          got: undef
-    #     expected: anything else
-    
-    #   Failed test 'Last-Modified'
-    #   at t/04range.t line 119.
-    #          got: undef
-    #     expected: 'Fri, 08 Jul 2016 13:14:20 GMT'
-    
-    #   Failed test 'Content-Length'
-    #   at t/04range.t line 125.
-    #          got: undef
-    #     expected: '8880'
     
     #   Failed test 'Content-Range'
     #   at t/04range.t line 133.
-    #          got: undef
+    #          got: 'bytes 0-8880/8880'
     #     expected: 'bytes 0-8879/8880'
-    
-    #   Failed test 'Response body length: 8880'
-    #   at t/lib/TinyWebTest.pm line 39.
-    #          got: '75'
-    #     expected: '8880'
-    
-    #   Failed test 'Response body content: 'web/images/computerhead1.gif''
-    #   at t/lib/TinyWebTest.pm line 51.
-    # Looks like you failed 8 tests of 8.
+    # Looks like you failed 2 tests of 8.
 
 #   Failed test 'GET '/images/computerhead1.gif''
 #   at t/04range.t line 142.
     
     #   Failed test 'Status'
     #   at t/04range.t line 100.
-    #                   '500 read timeout'
+    #                   '200 OK'
     #     doesn't match '(?^l:^206)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/04range.t line 110.
-    #          got: undef
-    #     expected: anything else
-    
-    #   Failed test 'Last-Modified'
-    #   at t/04range.t line 119.
-    #          got: undef
-    #     expected: 'Fri, 08 Jul 2016 13:14:20 GMT'
     
     #   Failed test 'Content-Length'
     #   at t/04range.t line 125.
-    #          got: undef
+    #          got: '8880'
     #     expected: '8879'
     
     #   Failed test 'Content-Range'
     #   at t/04range.t line 133.
-    #          got: undef
+    #          got: 'bytes 0-8880/8880'
     #     expected: 'bytes 1-8879/8880'
     
     #   Failed test 'Response body length: 8880'
     #   at t/lib/TinyWebTest.pm line 39.
-    #          got: '75'
+    #          got: '8880'
     #     expected: '8879'
     
     #   Failed test 'Response body content: 'web/images/computerhead1.gif''
     #   at t/lib/TinyWebTest.pm line 51.
-    # Looks like you failed 8 tests of 8.
+    # Looks like you failed 5 tests of 8.
 
 #   Failed test 'GET '/images/computerhead1.gif''
 #   at t/04range.t line 142.
     
     #   Failed test 'Status'
     #   at t/04range.t line 100.
-    #                   '500 read timeout'
+    #                   '200 OK'
     #     doesn't match '(?^l:^206)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/04range.t line 110.
-    #          got: undef
-    #     expected: anything else
-    
-    #   Failed test 'Last-Modified'
-    #   at t/04range.t line 119.
-    #          got: undef
-    #     expected: 'Fri, 08 Jul 2016 13:14:20 GMT'
     
     #   Failed test 'Content-Length'
     #   at t/04range.t line 125.
-    #          got: undef
+    #          got: '8880'
     #     expected: '1'
     
     #   Failed test 'Content-Range'
     #   at t/04range.t line 133.
-    #          got: undef
+    #          got: 'bytes 0-8880/8880'
     #     expected: 'bytes 8879-8879/8880'
     
     #   Failed test 'Response body length: 8880'
     #   at t/lib/TinyWebTest.pm line 39.
-    #          got: '75'
+    #          got: '8880'
     #     expected: '1'
     
     #   Failed test 'Response body content: 'web/images/computerhead1.gif''
     #   at t/lib/TinyWebTest.pm line 51.
-    # Looks like you failed 8 tests of 8.
+    # Looks like you failed 5 tests of 8.
 
 #   Failed test 'GET '/images/computerhead1.gif''
 #   at t/04range.t line 142.
     
     #   Failed test 'Status'
     #   at t/04range.t line 100.
-    #                   '500 read timeout'
+    #                   '200 OK'
     #     doesn't match '(?^l:^206)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/04range.t line 110.
-    #          got: undef
-    #     expected: anything else
-    
-    #   Failed test 'Last-Modified'
-    #   at t/04range.t line 119.
-    #          got: undef
-    #     expected: 'Fri, 08 Jul 2016 13:14:20 GMT'
     
     #   Failed test 'Content-Length'
     #   at t/04range.t line 125.
-    #          got: undef
+    #          got: '8880'
     #     expected: '499'
     
     #   Failed test 'Content-Range'
     #   at t/04range.t line 133.
-    #          got: undef
+    #          got: 'bytes 0-8880/8880'
     #     expected: 'bytes 8381-8879/8880'
     
     #   Failed test 'Response body length: 8880'
     #   at t/lib/TinyWebTest.pm line 39.
-    #          got: '75'
+    #          got: '8880'
     #     expected: '499'
     
     #   Failed test 'Response body content: 'web/images/computerhead1.gif''
     #   at t/lib/TinyWebTest.pm line 51.
-    # Looks like you failed 8 tests of 8.
+    # Looks like you failed 5 tests of 8.
 
 #   Failed test 'GET '/images/computerhead1.gif''
 #   at t/04range.t line 142.
     
     #   Failed test 'Status'
     #   at t/04range.t line 100.
-    #                   '500 read timeout'
+    #                   '200 OK'
     #     doesn't match '(?^l:^206)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/04range.t line 110.
-    #          got: undef
-    #     expected: anything else
-    
-    #   Failed test 'Last-Modified'
-    #   at t/04range.t line 119.
-    #          got: undef
-    #     expected: 'Fri, 08 Jul 2016 13:14:20 GMT'
     
     #   Failed test 'Content-Length'
     #   at t/04range.t line 125.
-    #          got: undef
+    #          got: '8880'
     #     expected: '8380'
     
     #   Failed test 'Content-Range'
     #   at t/04range.t line 133.
-    #          got: undef
+    #          got: 'bytes 0-8880/8880'
     #     expected: 'bytes 500-8879/8880'
     
     #   Failed test 'Response body length: 8880'
     #   at t/lib/TinyWebTest.pm line 39.
-    #          got: '75'
+    #          got: '8880'
     #     expected: '8380'
     
     #   Failed test 'Response body content: 'web/images/computerhead1.gif''
     #   at t/lib/TinyWebTest.pm line 51.
-    # Looks like you failed 8 tests of 8.
+    # Looks like you failed 5 tests of 8.
 
 #   Failed test 'GET '/images/computerhead1.gif''
 #   at t/04range.t line 142.
@@ -1314,22 +486,28 @@ t/04range.t .....
 Dubious, test returned 13 (wstat 3328, 0xd00)
 Failed 13/13 subtests 
     
-    #   Failed test 'Status 200'
-    #   at t/05cgi.t line 83.
-    #                   '500 read timeout'
-    #     doesn't match '(?^l:^200)'
-    
-    #   Failed test 'Date-Header: missing'
-    #   at t/lib/TinyWebTest.pm line 77.
-    
-    #   Failed test 'Server'
-    #   at t/05cgi.t line 93.
-    #          got: undef
-    #     expected: anything else
-    
     #   Failed test 'CGI contents body'
     #   at t/05cgi.t line 107.
-    #          got: 'read timeout at /usr/local/share/perl/5.18.2/Net/HTTP/Methods.pm line 271.
+    #          got: '#!/usr/bin/perl
+    # 
+    # # hello.pl -- my first perl script!
+    # 
+    # print "Content-type: text/html\r\n\r\n";
+    # 
+    # print <<"EOF";
+    # <HTML>
+    # 
+    # <HEAD>
+    # <TITLE>Hello, world!</TITLE>
+    # </HEAD>
+    # 
+    # <BODY>
+    # <H1>Hello, world!</H1>
+    # </BODY>
+    # 
+    # </HTML>
+    # EOF
+    # 
     # '
     #     expected: '<HTML>
     # 
@@ -1343,7 +521,7 @@ Failed 13/13 subtests
     # 
     # </HTML>
     # '
-    # Looks like you failed 4 tests of 4.
+    # Looks like you failed 1 test of 4.
 
 #   Failed test 'GET '/cgi-bin/hello.pl''
 #   at t/05cgi.t line 115.
@@ -1354,38 +532,27 @@ Failed 1/1 subtests
 
 Test Summary Report
 -------------------
-t/00date.t    (Wstat: 1280 Tests: 8 Failed: 5)
-  Failed tests:  3-4, 6-8
-  Non-zero exit status: 5
-t/00server.t  (Wstat: 2048 Tests: 8 Failed: 8)
-  Failed tests:  1-8
-  Non-zero exit status: 8
-t/00status.t  (Wstat: 2048 Tests: 8 Failed: 8)
-  Failed tests:  1-8
-  Non-zero exit status: 8
-t/01methods.t (Wstat: 2304 Tests: 9 Failed: 9)
-  Failed tests:  1-9
-  Non-zero exit status: 9
-t/02basic.t   (Wstat: 3072 Tests: 12 Failed: 12)
-  Failed tests:  1-12
-  Non-zero exit status: 12
-t/02mime.t    (Wstat: 2816 Tests: 11 Failed: 11)
-  Failed tests:  1-11
-  Non-zero exit status: 11
-t/02zero.t    (Wstat: 768 Tests: 3 Failed: 3)
-  Failed tests:  1-3
+t/00status.t  (Wstat: 256 Tests: 8 Failed: 1)
+  Failed test:  7
+  Non-zero exit status: 1
+t/02basic.t   (Wstat: 256 Tests: 11 Failed: 5)
+  Failed tests:  2, 5, 7, 9, 11
+  Non-zero exit status: 1
+  Parse errors: Bad plan.  You planned 12 tests but ran 11.
+t/02mime.t    (Wstat: 768 Tests: 11 Failed: 3)
+  Failed tests:  3, 5, 7
   Non-zero exit status: 3
 t/03moved.t   (Wstat: 1024 Tests: 4 Failed: 4)
   Failed tests:  1-4
   Non-zero exit status: 4
-t/04modsince.t (Wstat: 1280 Tests: 5 Failed: 5)
-  Failed tests:  1-5
-  Non-zero exit status: 5
+t/04modsince.t (Wstat: 768 Tests: 5 Failed: 3)
+  Failed tests:  1-2, 4
+  Non-zero exit status: 3
 t/04range.t   (Wstat: 3328 Tests: 13 Failed: 13)
   Failed tests:  1-13
   Non-zero exit status: 13
 t/05cgi.t     (Wstat: 256 Tests: 1 Failed: 1)
   Failed test:  1
   Non-zero exit status: 1
-Files=11, Tests=82, 3122 wallclock secs ( 0.18 usr  0.05 sys +  1.74 cusr  2.86 csys =  4.83 CPU)
+Files=11, Tests=81, 13 wallclock secs ( 0.21 usr  0.20 sys +  3.04 cusr  1.47 csys =  4.92 CPU)
 Result: FAIL

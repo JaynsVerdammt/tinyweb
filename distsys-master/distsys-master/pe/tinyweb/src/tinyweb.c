@@ -52,7 +52,6 @@
 static volatile sig_atomic_t server_running = false;
 prog_options_t my_opt;
 http_status_t status;
-bool statusSet =false;
 
 #define IS_ROOT_DIR(mode)   (S_ISDIR(mode) && ((S_IROTH || S_IXOTH) & (mode)))
 #define PATH_MAX 4096
@@ -201,11 +200,8 @@ get_options(int argc, char *argv[], prog_options_t *opt)
 
 void set_http_status(http_status_t new_status)
 {
-	if(!statusSet){
 	status = new_status;
-	statusSet=true;
-	printf("Status gesetzt: %s", http_status_list[status].code);
-	}
+	printf("Status gesetzt: %i-------\n", http_status_list[status].code);
 }
 
 http_status_t get_http_status(void)
@@ -342,9 +338,11 @@ void client_connection(int sockfd)
 	case -1: error("Error on fork\n");
 		break;
 	case 0: child_processing(newsockfd, cli_addr);
-
+			close(newsockfd);
+			printf("[%d] Closing child process!\n\n", getpid());
 		break;
-	default: //printf("You are in the Fatherprocess: %d\n", getpid());
+	default: close(newsockfd);
+		//printf("You are in the Fatherprocess: %d\n", getpid());
 		break;
 	}
 }
@@ -372,7 +370,7 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 	if(read_error < 0)
 	{
 		error("Error reading from socket");
-		//set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
+		set_http_status(HTTP_STATUS_INTERNAL_SERVER_ERROR);
 	}
 	path_to_file_relativ = parse_HTTP_msg(buffer);
 	//printf("Path to file relativ: %s\n", path_to_file_relativ);
@@ -388,11 +386,13 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 	{
 		if( access( actualpath, F_OK ) == -1 )
 		{
+			printf("NOT FOUND ACCESS GET");
 			set_http_status(HTTP_STATUS_NOT_FOUND);
 		}
 		//printf("........test.............");
 		if((file_to_send = open(actualpath, O_RDWR, S_IWRITE | S_IREAD)) < 0)
 			{
+			printf("NOT FOUND FILE TO SEND GET");
 				set_http_status(HTTP_STATUS_NOT_FOUND);
 				response_header = create_HTTP_response_header(actualpath, buffer);
 				send(newsockfd, response_header, strlen(response_header), 0);
@@ -405,6 +405,7 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 	{
 		if( access( actualpath, F_OK ) == -1 )
 		{
+			printf("NOT FOUND ACCESS HEAD");
 			set_http_status(HTTP_STATUS_NOT_FOUND);
 		}
 	}
@@ -529,6 +530,7 @@ char* create_HTTP_response_header(const char *filename, char buffer[])
 		check = stat(filename, &file_Info);
 
 		if (check < 0) {
+			printf("NOT FOUND ACCESS CHECK");
 			set_http_status(HTTP_STATUS_NOT_FOUND);
 		}
 
