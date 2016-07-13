@@ -311,8 +311,8 @@ void write_to_logfile(struct sockaddr_in cli_addr, char *path_to_file_relativ, c
 	char str[INET_ADDRSTRLEN];
 	inet_ntop( AF_INET, &ipAddr, str, INET_ADDRSTRLEN );
 	p = strtok(buffer, " ");
-	printf("%s - - [%i/%s/%i:%02i:%02i:%02i +0200] \"%s %s\" %i %s %i\n", str, ts->tm_mday, get_month(ts->tm_mon), ts->tm_year + 1900, ts->tm_hour, ts->tm_min, ts->tm_sec, p, path_to_file_relativ, http_status_list[get_http_status()].code, http_status_list[get_http_status()].text, read_count_bytes);
-	fprintf(f, "%s - - [%s] \"%s %s\" %i %s %i\n", str, calculate_timestamp(), p, path_to_file_relativ, http_status_list[get_http_status()].code, http_status_list[get_http_status()].text, read_count_bytes);
+	//printf("%s - - [%i/%s/%i:%02i:%02i:%02i +0200] \"%s %s\" %i %s %i\n", str, ts->tm_mday, get_month(ts->tm_mon), ts->tm_year + 1900, ts->tm_hour, ts->tm_min, ts->tm_sec, p, path_to_file_relativ, http_status_list[get_http_status()].code, http_status_list[get_http_status()].text, read_count_bytes);
+	fprintf(f, "%s - - [%i/%s/%i:%02i:%02i:%02i +0200] \"%s %s\" %i %s %i\n", str, ts->tm_mday, get_month(ts->tm_mon), ts->tm_year + 1900, ts->tm_hour, ts->tm_min, ts->tm_sec, p, path_to_file_relativ, http_status_list[get_http_status()].code, http_status_list[get_http_status()].text, read_count_bytes);
 
 }
 
@@ -323,7 +323,7 @@ void client_connection(int sockfd)
 	struct sockaddr_in cli_addr;
 	pid_t pid;
 
-	printf("Port in Client Connection: %i\n", sockfd);
+	//printf("Port in Client Connection: %i\n", sockfd);
 	clilen = sizeof(cli_addr);
 	newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
 
@@ -361,7 +361,7 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 	char str_HEAD[] = "HEAD";
 
 	set_http_status(HTTP_STATUS_OK);
-	printf("You are in the Childprocess: %d\n", getpid());
+	//printf("You are in the Childprocess: %d\n", getpid());
 	bzero(buffer, BUFFER_SIZE);
 	read_error = read(newsockfd, buffer, BUFFER_SIZE - 1);
 	buffer_for_log = buffer;
@@ -379,6 +379,9 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 	p = strtok(buffer, " ");
 
 	ptr = realpath(path_to_file_relativ, actualpath);
+
+
+
 	printf("Realpath to File: %s\n", actualpath);
 	printf("Ptr: %s\n", ptr);
 
@@ -386,13 +389,13 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 	{
 		if( access( actualpath, F_OK ) == -1 )
 		{
-			printf("NOT FOUND ACCESS GET");
+			printf("NOT FOUND ACCESS GET ");
 			set_http_status(HTTP_STATUS_NOT_FOUND);
 		}
 		//printf("........test.............");
 		if((file_to_send = open(actualpath, O_RDWR, S_IWRITE | S_IREAD)) < 0)
 			{
-			printf("NOT FOUND FILE TO SEND GET");
+			printf("NOT FOUND FILE TO SEND GET ");
 				set_http_status(HTTP_STATUS_NOT_FOUND);
 				response_header = create_HTTP_response_header(actualpath, buffer);
 				send(newsockfd, response_header, strlen(response_header), 0);
@@ -403,10 +406,15 @@ void child_processing(int newsockfd, struct sockaddr_in cli_addr)
 
 	if(strcmp(p, str_HEAD) == 0)
 	{
-		if( access( actualpath, F_OK ) == -1 )
+		struct stat buf;
+		int check;
+		check = stat(actualpath, &buf);
+		if(check < 0)
 		{
-			printf("NOT FOUND ACCESS HEAD");
+			printf("NOT FOUND ACCESS HEAD ");
 			set_http_status(HTTP_STATUS_NOT_FOUND);
+		} else{
+			set_http_status(HTTP_STATUS_OK);
 		}
 	}
 
@@ -521,7 +529,7 @@ char* create_HTTP_response_header(const char *filename, char buffer[])
 		range_start = atoi(strtok(range,"-"));
 		range_end = atoi(strtok(NULL,"-"));
 
-		printf("Start: %i End: %i", range_start, range_end);
+		//printf("Start: %i End: %i", range_start, range_end);
 	}
 
 
@@ -530,7 +538,7 @@ char* create_HTTP_response_header(const char *filename, char buffer[])
 		check = stat(filename, &file_Info);
 
 		if (check < 0) {
-			printf("NOT FOUND ACCESS CHECK");
+			printf("NOT FOUND ACCESS CHECK ");
 			set_http_status(HTTP_STATUS_NOT_FOUND);
 		}
 
@@ -569,7 +577,7 @@ char* create_HTTP_response_header(const char *filename, char buffer[])
 	strcat(response_header, content_length_text);
 	strcat(response_header, content_range_text);
 	strcat(response_header, connection_text);
-	printf("%s", response_header);
+	printf("\n------------Response-----------------\n%s------------Response-----------------\n", response_header);
 
 	return response_header;
 }
@@ -627,11 +635,14 @@ char* parse_HTTP_msg(char buffer[])
 	char str_GET[] = "GET";
 	char str_HEAD[] = "HEAD";
 	char *path_to_file;
+
+	printf("\n---------Request-------------\n%s", buffer);
+
 	p = strtok(buffer, " ");
 	//printf("Buffer after strtok: %s\n", buffer);
 	prog_options_t *opt = &my_opt;
 
-	if(strcmp(p, str_GET) == 0)
+	if(strcmp(p, str_GET) == 0 || strcmp(p, str_HEAD) == 0)
 	{
 		p = strtok(NULL, " "); // p contains path to file
 		/*for(int n=0; n < strlen(p); ++n)
@@ -650,11 +661,6 @@ char* parse_HTTP_msg(char buffer[])
 		strcpy(path_to_file, opt->root_dir);
 		strcat(path_to_file, p);
 		return path_to_file;
-	}
-
-	else if(strcmp(p, str_HEAD) == 0)
-	{
-		return 0;//TODO
 	}
 	else
 	{
@@ -698,13 +704,13 @@ main(int argc, char *argv[])
 
     // here, as an example, show how to interact with the
     // condition set by the signal handler above
-    printf("[%d] Starting server '%s'...\n", getpid(), my_opt.progname);
+    //printf("[%d] Starting server '%s'...\n", getpid(), my_opt.progname);
     server_running = true;
     prog_options_t *opt = &my_opt;
     struct sockaddr_in* struct_port = (struct sockaddr_in*) opt->server_addr->ai_addr;
     sockfd = server_init(ntohs(struct_port->sin_port));
 
-    printf("Port: %i \n", sockfd);
+    //printf("Port: %i \n", sockfd);
     while(server_running) {
 
     	client_connection(sockfd);
